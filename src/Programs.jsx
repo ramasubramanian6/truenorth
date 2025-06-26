@@ -133,7 +133,7 @@ export default function ProgramsPage() {
           { name: "Home", path: "/" },
           { name: "Programs", path: "/programs" },
           { name: "Staff", path: "/#staff" },
-          { name: "Contact", path: "/#contact-section" },
+          { name: "Contact", path: "/join-now" },
         ].map((item) => (
           <motion.span
             key={item.name}
@@ -240,7 +240,7 @@ export default function ProgramsPage() {
             {/* Join Now Button */}
             <div className="mt-6">
               <motion.a
-                href="/#contact-section" // Changed to relative path for internal navigation
+                href="/join-now" // Changed to relative path for internal navigation
                 className="inline-block px-6 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
