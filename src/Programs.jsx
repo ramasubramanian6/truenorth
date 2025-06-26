@@ -1,10 +1,10 @@
-import React, { useState } from "react"; // Import useState
+import React, { useState } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { FaInstagramSquare, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa"; // Import FaBars, FaTimes
+import { FaInstagramSquare, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
 import { MdLocationOn } from "react-icons/md";
 import heroImg from "./assets/truenorth-program-img.avif";
 import logoImage from "./assets/True-North-Logo.jpeg";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 
 // Updated program schedule
 const programs = [
@@ -19,7 +19,7 @@ const programs = [
 
 export default function ProgramsPage() {
   const controls = useAnimation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   React.useEffect(() => {
     controls.start({
@@ -34,7 +34,7 @@ export default function ProgramsPage() {
 
   return (
     <div className="min-h-screen bg-white font-sans overflow-hidden">
-     
+
       <motion.header
         className="w-full h-25 bg-black bg-opacity-80 flex items-center justify-between px-3 sm:px-6 shadow-lg fixed top-0 left-0 z-50"
         initial={{ y: -100 }}
@@ -58,11 +58,11 @@ export default function ProgramsPage() {
           {[
             { name: "Home", path: "/" },
             { name: "Programs", path: "/programs" },
-            { name: "Staff", path: "#staff" },
-            { name: "Contact", path: "#contact-section" },
+            { name: "Staff", path: "/#staff" },
+            { name: "Contact", path: "/join-now" }, // Reverted to /join-now
           ].map((item) => (
             <motion.span key={item.name} whileHover={{ scale: 1.1 }}>
-              {item.path.startsWith("http") || item.path.startsWith("#") ? (
+              {item.path.startsWith("http") || item.path.startsWith("/#") ? (
                 <a
                   href={item.path}
                   className="text-white hover:text-orange-500"
@@ -119,7 +119,7 @@ export default function ProgramsPage() {
         </div>
       </motion.header>
 
-      
+
       <motion.nav
         initial={false}
         animate={isMobileMenuOpen ? "open" : "closed"}
@@ -143,14 +143,14 @@ export default function ProgramsPage() {
           { name: "Home", path: "/" },
           { name: "Programs", path: "/programs" },
           { name: "Staff", path: "/#staff" },
-          { name: "Contact", path: "/joinnow" },
+          { name: "Contact", path: "/join-now" }, // Reverted to /join-now
         ].map((item) => (
           <motion.span
             key={item.name}
             whileHover={{ scale: 1.1 }}
-            onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            {item.path.startsWith("/") ? ( // Use Link for internal paths
+            {item.path.startsWith("/") ? (
               <Link
                 to={item.path}
                 className="text-white text-2xl font-bold hover:text-orange-500"
@@ -158,7 +158,6 @@ export default function ProgramsPage() {
                 {item.name}
               </Link>
             ) : (
-              // Use <a> for external or fragment paths
               <a
                 href={item.path}
                 className="text-white text-2xl font-bold hover:text-orange-500"
@@ -192,7 +191,7 @@ export default function ProgramsPage() {
         </div>
       </motion.nav>
 
-     
+
       <section className="pt-24">
         <motion.img
           src={heroImg}
@@ -253,23 +252,22 @@ export default function ProgramsPage() {
             <p className="mt-4 italic">
               Looking forward to seeing you in class!
             </p>
-           
+
             <div className="mt-6">
-              <motion.a
-                href="/joinnow" // Changed to relative path for internal navigation
+              <Link // Changed from <a> to <Link> for internal navigation consistency
+                to="/join-now" // Reverted to /join-now
                 className="inline-block px-6 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                onClick={() => setIsMobileMenuOpen(false)} // Close menu if "Join Now" is clicked from mobile menu
               >
                 Join Now
-              </motion.a>
+              </Link>
             </div>
           </motion.div>
         </div>
       </motion.section>
 
-     
+
       <motion.footer
         className="w-full py-10 bg-black text-white"
         initial={{ opacity: 0 }}
@@ -278,7 +276,7 @@ export default function ProgramsPage() {
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-        
+
           <div>
             <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
               True North Academy
@@ -294,7 +292,7 @@ export default function ProgramsPage() {
             </p>
           </div>
 
-          
+
           <div>
             <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
               Contact & Visit Us
@@ -319,7 +317,7 @@ export default function ProgramsPage() {
 
           {/* Column 3: Quick Links & Socials */}
           <div>
-            <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
+            <h3 className="text-xl font-bold font-rockwell mt-6 mb-4 text-orange-500">
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -348,12 +346,12 @@ export default function ProgramsPage() {
                 </a>
               </li>
               <li>
-                <a
-                  href="/joinnow"
+                <Link // Changed from <a> to <Link> for internal navigation consistency
+                  to="/join-now" // Reverted to /join-now
                   className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
                 >
                   Contact Us
-                </a>
+                </Link>
               </li>
             </ul>
 

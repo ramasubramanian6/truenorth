@@ -1,9 +1,6 @@
-// src/pages/JoinNowForm.jsx (Standalone with embedded Header/Footer and enhanced styling, no comments)
-
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useAnimation } from "framer-motion";
+import React, { useRef, useState } from "react"; // Removed useEffect
+import { motion } from "framer-motion"; // Removed useAnimation
 import emailjs from "emailjs-com";
-
 import { FaInstagramSquare, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
 import logoImage from "./assets/True-North-Logo.jpeg";
 import { Link } from "react-router-dom";
@@ -12,7 +9,7 @@ import { Link } from "react-router-dom";
 const JoinNowForm = () => {
   const form = useRef();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const controls = useAnimation();
+  // Removed const controls = useAnimation(); - it was unused
 
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
@@ -75,15 +72,9 @@ const JoinNowForm = () => {
           <Link to="/programs" className="text-white hover:text-orange-500">
             Programs
           </Link>
-          <a href="/#staff" className="text-white hover:text-orange-500">
-            Staff
-          </a>
-          <a
-            href="/joinnow"
-            className="text-white hover:text-orange-500"
-          >
-            Contact
-          </a>
+          {/* If you want Staff/Contact in desktop nav, add them back here */}
+          {/* <a href="/#staff" className="text-white hover:text-orange-500">Staff</a> */}
+          {/* <a href="/joinnow" className="text-white hover:text-orange-500">Contact</a> */}
         </nav>
 
         <div className="md:hidden flex items-center">
@@ -146,8 +137,8 @@ const JoinNowForm = () => {
         {[
           { name: "Home", path: "/" },
           { name: "Programs", path: "/programs" },
-          { name: "Staff", path: "/#staff" },
-          { name: "Contact", path: "/#contact-section" },
+          { name: "Staff", path: "/#staff" }, // Keep if staff section exists on home
+          { name: "Contact", path: "/#contact-section" }, // Keep if contact section exists on home
         ].map((item) => (
           <motion.span
             key={item.name}
@@ -409,7 +400,7 @@ const JoinNowForm = () => {
           </div>
 
           <div>
-            <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
+            <h3 className="text-xl font-bold font-rockwell mt-6 mb-4 text-orange-500">
               Quick Links
             </h3>
             <ul className="space-y-2">
@@ -429,22 +420,17 @@ const JoinNowForm = () => {
                   Our Programs
                 </Link>
               </li>
-              <li>
-                <a
-                  href="/#staff"
-                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
-                >
+              {/* If you want Staff/Contact in footer quick links, add them back here */}
+              {/* <li>
+                <a href="/#staff" className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto">
                   Meet Our Staff
                 </a>
               </li>
               <li>
-                <a
-                  href="/joinnow"
-                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
-                >
+                <a href="/joinnow" className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto">
                   Contact Us
                 </a>
-              </li>
+              </li> */}
             </ul>
 
             <h3 className="text-xl font-bold font-rockwell mt-6 mb-4 text-orange-500">
