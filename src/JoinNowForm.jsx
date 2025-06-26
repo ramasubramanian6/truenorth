@@ -1,40 +1,54 @@
-import React, { useState } from "react"; // Import useState
+// src/pages/JoinNowForm.jsx (Standalone with embedded Header/Footer and enhanced styling, no comments)
+
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
-import { FaInstagramSquare, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa"; // Import FaBars, FaTimes
-import { MdLocationOn } from "react-icons/md";
-import heroImg from "./assets/truenorth-program-img.avif";
+import emailjs from "emailjs-com";
+
+import { FaInstagramSquare, FaWhatsapp, FaBars, FaTimes } from "react-icons/fa";
 import logoImage from "./assets/True-North-Logo.jpeg";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
 
-// Updated program schedule
-const programs = [
-  {
-    id: 1,
-    name: "Drawing & Fine Arts",
-    schedule: "Tuesday & Thursday, 6 PM - 7 PM",
-  },
-  { id: 2, name: "Karate", schedule: "Tuesday & Thursday, 7 PM - 8 PM" },
-  { id: 3, name: "Archery", schedule: "Tuesday & Thursday, 8 PM - 9 PM" },
-];
 
-export default function ProgramsPage() {
+const JoinNowForm = () => {
+  const form = useRef();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const controls = useAnimation();
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // State for mobile menu
 
-  React.useEffect(() => {
-    controls.start({
-      backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-      transition: { duration: 20, repeat: Infinity, ease: "linear" },
-    });
-  }, [controls]);
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs
+      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", form.current, {
+        publicKey: "YOUR_PUBLIC_KEY",
+      })
+      .then(
+        () => {
+          console.log("SUCCESS!");
+          alert("Your registration request has been sent successfully!");
+          form.current.reset();
+        },
+        (error) => {
+          console.log("FAILED...", error.text);
+          alert("Failed to send request. Please try again later.");
+        }
+      );
+  };
+
   return (
-    <div className="min-h-screen bg-white font-sans overflow-hidden">
-      {/* Header */}
+    <div className="min-h-screen bg-white font-sans flex flex-col">
       <motion.header
         className="w-full h-24 bg-black bg-opacity-80 flex items-center justify-between px-4 sm:px-6 fixed top-0 z-50"
         initial={{ y: -100 }}
@@ -54,26 +68,24 @@ export default function ProgramsPage() {
           </h1>
         </div>
 
-        {/* Navigation Links (Desktop) */}
         <nav className="hidden md:flex space-x-6">
           <Link to="/" className="text-white hover:text-orange-500">
             Home
           </Link>
-          <Link to="/programs" className="text-orange-500 font-medium">
+          <Link to="/programs" className="text-white hover:text-orange-500">
             Programs
           </Link>
           <a href="/#staff" className="text-white hover:text-orange-500">
             Staff
           </a>
           <a
-            href="/join-now"
+            href="/#contact-section"
             className="text-white hover:text-orange-500"
           >
             Contact
           </a>
         </nav>
 
-        {/* Mobile Menu Toggle Button (Hamburger Icon) */}
         <div className="md:hidden flex items-center">
           <button
             onClick={toggleMobileMenu}
@@ -88,28 +100,30 @@ export default function ProgramsPage() {
           </button>
         </div>
 
-        {/* Social Media Icons (Desktop) */}
         <div className="hidden md:flex items-center space-x-3">
-          <a
+          <motion.a
             href="https://www.instagram.com/tnorthco/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-orange-600"
+            whileHover={{ scale: 1.15 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <FaInstagramSquare className="w-7 h-7" />
-          </a>
-          <a
+          </motion.a>
+          <motion.a
             href="https://wa.me/919345000685"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-green-500"
+            whileHover={{ scale: 1.15 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
             <FaWhatsapp className="w-7 h-7" />
-          </a>
+          </motion.a>
         </div>
       </motion.header>
 
-      {/* Mobile Navigation Menu */}
       <motion.nav
         initial={false}
         animate={isMobileMenuOpen ? "open" : "closed"}
@@ -138,13 +152,13 @@ export default function ProgramsPage() {
           <motion.span
             key={item.name}
             whileHover={{ scale: 1.1 }}
-            onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
+            onClick={() => setIsMobileMenuOpen(false)}
           >
-            {item.path.startsWith("/") ? ( // Use Link for internal paths
+            {item.path.startsWith("/") ? (
               <Link to={item.path} className="text-white text-2xl font-bold hover:text-orange-500">
                 {item.name}
               </Link>
-            ) : ( // Use <a> for external or fragment paths
+            ) : (
               <a href={item.path} className="text-white text-2xl font-bold hover:text-orange-500">
                 {item.name}
               </a>
@@ -175,85 +189,180 @@ export default function ProgramsPage() {
         </div>
       </motion.nav>
 
-      {/* Hero Image */}
-      <section className="pt-24">
-        <motion.img
-          src={heroImg}
-          alt="Programs Hero"
-          className="w-full h-auto object-cover"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 1.5 }}
-        />
-      </section>
 
-      {/* Programs Section with animated gradient background */}
-      <motion.section
-        className="py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
-        style={{
-          background: "linear-gradient(270deg, #fef9c3, #fed7aa, #fecaca)",
-        }}
-        animate={controls}
-      >
-        <div className="max-w-3xl mx-auto bg-white bg-opacity-90 p-6 rounded-lg shadow-xl">
-          <h2 className="text-center text-3xl font-bold mb-8">
-            Class Schedule
-          </h2>
-          {programs.map((prog) => (
-            <motion.div
-              key={prog.id}
-              className="mb-6 p-6 border-4 border-black rounded-lg shadow-lg"
-              initial={{ x: -50, opacity: 0 }}
-              whileInView={{ x: 0, opacity: 1 }}
-              viewport={{ once: true, amount: 0.3 }}
-              transition={{ duration: 0.6 }}
-            >
-              <h3 className="text-2xl font-semibold mb-2">{prog.name}</h3>
-              <p className="text-gray-700">{prog.schedule}</p>
-            </motion.div>
-          ))}
-          <motion.div
-            className="mt-8 text-center"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ delay: 0.5 }}
+      <main className="flex-grow pt-24 pb-12 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <section className="w-full py-10 px-4 sm:px-6 bg-gradient-to-r from-red-700 to-orange-500 text-center shadow-lg rounded-b-3xl">
+          <motion.h2
+            className="text-white text-4xl sm:text-5xl font-extrabold font-rockwell tracking-wider mb-3 drop-shadow-md"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
           >
-            <p className="mb-4">
-              <strong>Music, Silambam & Bharatanatyam classes</strong> will
-              start soon.
-            </p>
-            <p className="mb-2">Please register and join us at:</p>
-            <p className="flex items-center justify-center space-x-2 mb-2">
-              <MdLocationOn />
-              <span>
-                3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram,
-                Tirunelveli
-              </span>
-            </p>
-            <p className="mt-2">
-              Questions? Call <strong>+91 93450 00685</strong> /{" "}
-              <strong>+91 70100 78309</strong>
-            </p>
-            <p className="mt-4 italic">
-              Looking forward to seeing you in class!
-            </p>
-            {/* Join Now Button */}
-            <div className="mt-6">
-              <motion.a
-                href="/#contact-section" // Changed to relative path for internal navigation
-                className="inline-block px-6 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition-colors duration-300"
-                whileHover={{ scale: 1.05 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                onClick={() => setIsMobileMenuOpen(false)} // Close menu if "Join Now" is clicked from mobile menu
-              >
-                Join Now
-              </motion.a>
-            </div>
-          </motion.div>
-        </div>
-      </motion.section>
+            JOIN OUR PROGRAMS
+          </motion.h2>
+          <motion.p
+            className="text-white text-lg sm:text-xl font-light font-rockwell leading-relaxed px-4 max-w-3xl mx-auto"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            Ready to unleash your potential? Fill out the form below to register your interest and we'll get back to you!
+          </motion.p>
+        </section>
 
-      {/* Footer from Home */}
+        <section className="w-full py-12 px-4 sm:px-6">
+          <form
+            ref={form}
+            onSubmit={sendEmail}
+            className="max-w-xl mx-auto bg-white p-8 rounded-lg shadow-2xl border-4 border-black"
+          >
+            <motion.div
+              className="mb-6"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+            >
+              <label
+                htmlFor="user_first_name"
+                className="block text-gray-800 text-lg font-bold font-rockwell leading-tight mb-2"
+              >
+                Your Name
+              </label>
+              <input
+                type="text"
+                id="user_first_name"
+                name="user_first_name"
+                className="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:border-red-600 transition-colors duration-200 text-base shadow-sm"
+                placeholder="Enter your full name"
+              />
+            </motion.div>
+
+            <motion.div
+              className="mb-6"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.1 }}
+            >
+              <label
+                htmlFor="user_email"
+                className="block text-gray-800 text-lg font-bold font-rockwell leading-tight mb-2"
+              >
+                Your Email<span className="text-red-600">*</span>
+              </label>
+              <input
+                type="email"
+                id="user_email"
+                name="user_email"
+                className="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:border-red-600 transition-colors duration-200 text-base shadow-sm"
+                placeholder="your.email@example.com"
+                required
+              />
+            </motion.div>
+
+            <motion.div
+              className="mb-6"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.2 }}
+            >
+              <label
+                htmlFor="user_phone"
+                className="block text-gray-800 text-lg font-bold font-rockwell leading-tight mb-2"
+              >
+                Your Phone No.
+              </label>
+              <input
+                type="tel"
+                id="user_phone"
+                name="user_phone"
+                className="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:border-red-600 transition-colors duration-200 text-base shadow-sm"
+                placeholder="+91 XXXXXXXXXX"
+              />
+            </motion.div>
+
+            <motion.div
+              className="mb-6"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.3 }}
+            >
+              <label
+                htmlFor="user_programs"
+                className="block text-gray-800 text-lg font-bold font-rockwell leading-tight mb-2"
+              >
+                Programs of Interest<span className="text-red-600">*</span>
+              </label>
+              <select
+                id="user_programs"
+                name="user_programs"
+                className="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:border-red-600 transition-colors duration-200 text-base shadow-sm bg-white"
+                required
+              >
+                <option value="" disabled selected>
+                  -- Select a Program --
+                </option>
+                <option value="Karate">Karate</option>
+                <option value="Kick Boxing">Kick Boxing</option>
+                <option value="Archery">Archery</option>
+                <option value="Kobudo">Kobudo</option>
+                <option value="Drawing">Drawing</option>
+                <option value="Silambam">Silambam</option>
+                <option value="Yoga">Yoga</option>
+                <option value="Abacus">Abacus</option>
+                <option value="Bharatanatyam">Bharatanatyam</option>
+                <option value="Multiple/Other">Multiple/Other</option>
+              </select>
+            </motion.div>
+
+            <motion.div
+              className="mb-8"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.4 }}
+            >
+              <label
+                htmlFor="user_message"
+                className="block text-gray-800 text-lg font-bold font-rockwell leading-tight mb-2"
+              >
+                Your Message (Optional)
+              </label>
+              <textarea
+                id="user_message"
+                name="user_message"
+                rows="2"
+                className="w-full p-3 border-2 border-gray-300 rounded-md focus:outline-none focus:border-red-600 transition-colors duration-200 text-base shadow-sm"
+                placeholder="Any specific questions or additional details you'd like to share?"
+              ></textarea>
+            </motion.div>
+
+            <motion.button
+              type="submit"
+              className="w-full py-3 bg-red-600 text-white text-xl font-bold font-rockwell rounded-md shadow-lg hover:bg-red-700 transition-colors duration-300 transform hover:scale-102 active:scale-98"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: 0.5 }}
+            >
+              Submit Registration Request
+            </motion.button>
+          </form>
+        </section>
+      </main>
+
       <motion.footer
         className="w-full py-10 bg-black text-white"
         initial={{ opacity: 0 }}
@@ -262,7 +371,6 @@ export default function ProgramsPage() {
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Column 1: About True North */}
           <div>
             <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
               True North Academy
@@ -278,7 +386,6 @@ export default function ProgramsPage() {
             </p>
           </div>
 
-          {/* Column 2: Contact & Location */}
           <div>
             <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
               Contact & Visit Us
@@ -301,7 +408,6 @@ export default function ProgramsPage() {
             </p>
           </div>
 
-          {/* Column 3: Quick Links & Socials */}
           <div>
             <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
               Quick Links
@@ -373,4 +479,6 @@ export default function ProgramsPage() {
       </motion.footer>
     </div>
   );
-}
+};
+
+export default JoinNowForm;
