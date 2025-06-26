@@ -15,7 +15,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/programs" element={<ProgramsPage />} />
-        <Route path="/join-now" element={<JoinNowForm />} /> {/* New route */}
+        <Route path="/joinnow" element={<JoinNowForm />} /> {/* New route */}
       </Routes>
     
   );

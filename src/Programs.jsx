@@ -34,7 +34,7 @@ export default function ProgramsPage() {
 
   return (
     <div className="min-h-screen bg-white font-sans overflow-hidden">
-      {/* Header */}
+     
       <motion.header
         className="w-full h-25 bg-black bg-opacity-80 flex items-center justify-between px-3 sm:px-6 shadow-lg fixed top-0 left-0 z-50"
         initial={{ y: -100 }}
@@ -119,7 +119,7 @@ export default function ProgramsPage() {
         </div>
       </motion.header>
 
-      {/* Mobile Navigation Menu */}
+      
       <motion.nav
         initial={false}
         animate={isMobileMenuOpen ? "open" : "closed"}
@@ -143,7 +143,7 @@ export default function ProgramsPage() {
           { name: "Home", path: "/" },
           { name: "Programs", path: "/programs" },
           { name: "Staff", path: "/#staff" },
-          { name: "Contact", path: "/join-now" },
+          { name: "Contact", path: "/joinnow" },
         ].map((item) => (
           <motion.span
             key={item.name}
@@ -192,7 +192,7 @@ export default function ProgramsPage() {
         </div>
       </motion.nav>
 
-      {/* Hero Image */}
+     
       <section className="pt-24">
         <motion.img
           src={heroImg}
@@ -204,7 +204,6 @@ export default function ProgramsPage() {
         />
       </section>
 
-      {/* Programs Section with animated gradient background */}
       <motion.section
         className="py-12 px-4 sm:px-6 lg:px-8 relative overflow-hidden"
         style={{
@@ -254,10 +253,10 @@ export default function ProgramsPage() {
             <p className="mt-4 italic">
               Looking forward to seeing you in class!
             </p>
-            {/* Join Now Button */}
+           
             <div className="mt-6">
               <motion.a
-                href="/join-now" // Changed to relative path for internal navigation
+                href="/joinnow" // Changed to relative path for internal navigation
                 className="inline-block px-6 py-3 bg-red-600 text-white font-bold rounded-full shadow-lg hover:bg-red-700 transition-colors duration-300"
                 whileHover={{ scale: 1.05 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
@@ -270,7 +269,7 @@ export default function ProgramsPage() {
         </div>
       </motion.section>
 
-      {/* Footer from Home */}
+     
       <motion.footer
         className="w-full py-10 bg-black text-white"
         initial={{ opacity: 0 }}
@@ -279,7 +278,7 @@ export default function ProgramsPage() {
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Column 1: About True North */}
+        
           <div>
             <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
               True North Academy
@@ -295,7 +294,7 @@ export default function ProgramsPage() {
             </p>
           </div>
 
-          {/* Column 2: Contact & Location */}
+          
           <div>
             <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
               Contact & Visit Us
@@ -350,7 +349,7 @@ export default function ProgramsPage() {
               </li>
               <li>
                 <a
-                  href="/join-now"
+                  href="/joinnow"
                   className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
                 >
                   Contact Us

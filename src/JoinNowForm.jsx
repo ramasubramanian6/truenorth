@@ -79,7 +79,7 @@ const JoinNowForm = () => {
             Staff
           </a>
           <a
-            href="/#contact-section"
+            href="/joinnow"
             className="text-white hover:text-orange-500"
           >
             Contact
@@ -439,7 +439,7 @@ const JoinNowForm = () => {
               </li>
               <li>
                 <a
-                  href="/join-now"
+                  href="/joinnow"
                   className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
                 >
                   Contact Us
