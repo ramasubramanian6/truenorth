@@ -1,11 +1,28 @@
 // Home.jsx
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion } from "framer-motion";
-import emailjs from "emailjs-com"; // Correct import for modern emailjs-com
+import emailjs from "emailjs-com";
+import home_page from "./assets/TrueNorth-homepage.jpeg";
+
+// Import React Icons
+import {
+  FaFacebookSquare,
+  FaInstagramSquare,
+  FaWhatsapp,
+  FaBars,
+  FaTimes,
+} from "react-icons/fa";
+import { MdLocationOn } from "react-icons/md";
+
+// --- Instructor Image Imports ---
+import baratha from "./assets/TRUENORTH-bharatanatyam-instructor.jpeg";
+import karate from "./assets/TRUENORTH-karate-instructor.jpeg";
+import silambam from "./assets/TRUENORTH-silambam-instructor.jpeg";
+import draw from "./assets/TRUENORTH-drawing-instructor.jpeg";
+import { Link } from "react-router-dom";
 
 // --- Local Image Imports ---
-// Ensure these paths are correct relative to your Home.jsx file
-import logoImage from "./assets/react.svg"; // Assuming react.svg is your logo
+import logoImage from "./assets/True-North-Logo.jpeg";
 import abacusImage from "./assets/TRUENORTH-abacus.jpeg";
 import archeryImage from "./assets/TRUENORTH-archery.jpeg";
 import bharatanatyamImage from "./assets/TRUENORTH-bharatanatyam.jpeg";
@@ -15,18 +32,14 @@ import kickBoxingImage from "./assets/TRUENORTH-kick boxing.jpg";
 import kobudoImage from "./assets/TRUENORTH-kobudo.jpeg";
 import silambamImage from "./assets/TRUENORTH-silambam.jpeg";
 import yogaImage from "./assets/TRUENORTH-yoga.jpeg";
-import pin from "./assets/pin.png";
+import TrueNorthMap from "./TrueNorthMap";
 
-// --- Placeholder/Remote Image URLs (do NOT import these as modules) ---
-// If you have actual local files for these, change them from const to import and provide the path.
-const heroBgImage = "https://placehold.co/1440x920"; // Replace with your actual hero background image path if available
-const socialIcon1 = "https://placehold.co/40x40"; // Replace with your actual social icon 1 path
-const socialIcon2 = "https://placehold.co/40x40"; // Replace with your actual social icon 2 path
-const staffPlaceholder = "https://placehold.co/368x355"; // Replace with your actual staff image placeholder or default
-const locationPin = "https://www.svgrepo.com/show/513515/location-pin.svg"; // SVG icon for the map pin
+// --- Hero Background Image ---
+const heroBgImage = { home_page };
 
 const Home = () => {
   const form = useRef();
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -48,7 +61,11 @@ const Home = () => {
       );
   };
 
-  // Animation variants for sections
+  const toggleMobileMenu = () => {
+    setIsMobileMenuOpen(!isMobileMenuOpen);
+  };
+
+  // Animation variants
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
     visible: {
@@ -58,7 +75,6 @@ const Home = () => {
     },
   };
 
-  // Animation variants for items within sections (staggered effect)
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -68,104 +84,223 @@ const Home = () => {
     },
   };
 
+  // Coordinates for True North Location
+  const latitude = 8.69872739448295;
+  const longitude = 77.7370064089706;
+
+  // Construct Google Maps URL for opening in a new tab when pin is clicked
+  const googleMapsUrlForPin = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`; // Corrected Google Maps URL
+
   return (
     <div className="min-h-screen bg-white font-sans overflow-hidden">
-      {/* Header */}
+     
       <motion.header
-        className="w-full h-16 bg-black bg-opacity-80 flex items-center justify-between px-3 sm:px-6 shadow-lg fixed top-0 left-0 z-50"
+        className="w-full h-25 bg-black bg-opacity-80 flex items-center justify-between px-3 sm:px-6 shadow-lg fixed top-0 left-0 z-50"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 120, damping: 15 }}
       >
-        <motion.img
-          className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover"
-          src={logoImage}
-          alt="Logo"
-          whileHover={{ scale: 1.05 }}
-          transition={{ type: "spring", stiffness: 400, damping: 10 }}
-        />
+       
+        <div className="flex items-center space-x-3">
+          <motion.img
+            className="h-18 sm:h-24 w-auto object-contain rounded-b-4xl"
+            src={logoImage}
+            alt="Logo"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
+          />
+          <h1 className="text-white text-xl sm:text-2xl lg:text-3xl font-bold font-rockwell tracking-wide">
+            True North Co.
+          </h1>
+        </div>
+
+       
         <nav className="hidden md:flex space-x-5 lg:space-x-8">
-          {["Home", "About", "Program", "Staff", "Contact"].map(
-            (item, index) => (
-              <motion.a
-                key={item}
-                href={`#${item.toLowerCase()}`}
-                className={`text-center text-base lg:text-lg font-medium font-roboto leading-normal transition-colors duration-300 ${
-                  item === "Home"
-                    ? "text-orange-500"
-                    : "text-white hover:text-orange-500"
-                }`}
-                whileHover={{ scale: 1.1 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-              >
-                {item}
-              </motion.a>
-            )
-          )}
+          {[
+            { name: "Home", path: "/" },
+            { name: "Programs", path: "/programs" },
+            { name: "Staff", path: "#staff" },
+            { name: "Contact", path: "#contact-section" },
+          ].map((item) => (
+            <motion.span key={item.name} whileHover={{ scale: 1.1 }}>
+              {item.path.startsWith("http") || item.path.startsWith("#") ? (
+                <a
+                  href={item.path}
+                  className="text-white hover:text-orange-500"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  to={item.path}
+                  className="text-white hover:text-orange-500"
+                >
+                  {item.name}
+                </Link>
+              )}
+            </motion.span>
+          ))}
         </nav>
-        <div className="flex items-center space-x-2 sm:space-x-3">
-          <motion.img
-            className="w-7 h-7 sm:w-8 sm:h-8 cursor-pointer opacity-80 hover:opacity-100"
-            src={socialIcon1}
-            alt="Social Icon 1"
+
+        
+        <div className="md:hidden flex items-center">
+          <button
+            onClick={toggleMobileMenu}
+            className="text-white focus:outline-none"
+            aria-label="Toggle mobile menu"
+          >
+            {isMobileMenuOpen ? (
+              <FaTimes className="w-8 h-8" />
+            ) : (
+              <FaBars className="w-8 h-8" />
+            )}
+          </button>
+        </div>
+
+       
+        <div className="hidden md:flex items-center space-x-2 sm:space-x-3">
+          <motion.a
+            href="https://www.instagram.com/tnorthco/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-orange-600"
             whileHover={{ scale: 1.15 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          />
-          <motion.img
-            className="w-7 h-7 sm:w-8 sm:h-8 cursor-pointer opacity-80 hover:opacity-100"
-            src={socialIcon2}
-            alt="Social Icon 2"
+          >
+            <FaInstagramSquare className="w-7 h-7 sm:w-8 sm:h-8" />
+          </motion.a>
+          <motion.a
+            href="https://wa.me/919345000685"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-white hover:text-green-500"
             whileHover={{ scale: 1.15 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          />
+          >
+            <FaWhatsapp className="w-7 h-7 sm:w-8 sm:h-8" />
+          </motion.a>
         </div>
       </motion.header>
+
+     
+      <motion.nav
+        initial={false}
+        animate={isMobileMenuOpen ? "open" : "closed"}
+        variants={{
+          open: { opacity: 1, x: 0 },
+          closed: { opacity: 0, x: "100%" },
+        }}
+        transition={{ type: "spring", stiffness: 120, damping: 20 }}
+        className={`fixed top-0 right-0 h-full w-1/3 bg-black bg-opacity-95 p-6 transform ${
+          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
+        } md:hidden z-40 flex flex-col justify-center items-center space-y-6`} 
+      >
+        <button
+          onClick={toggleMobileMenu}
+          className="absolute top-6 right-6 text-white focus:outline-none"
+          aria-label="Close mobile menu"
+        >
+          <FaTimes className="w-8 h-8" /> 
+        </button>
+        {[
+          { name: "Home", path: "/" },
+          { name: "Programs", path: "/programs" },
+          { name: "Staff", path: "#staff" },
+          { name: "Contact", path: "#contact-section" },
+        ].map((item) => (
+          <motion.span
+            key={item.name}
+            whileHover={{ scale: 1.1 }}
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            {item.path.startsWith("http") || item.path.startsWith("#") ? (
+              <a href={item.path} className="text-white text-2xl font-bold hover:text-orange-500">
+                {item.name}
+              </a>
+            ) : (
+              <Link to={item.path} className="text-white text-2xl font-bold hover:text-orange-500"> 
+                {item.name}
+              </Link>
+            )}
+          </motion.span>
+        ))}
+        <div className="flex items-center space-x-6 mt-8">
+            <motion.a
+                href="https://www.instagram.com/tnorthco/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-orange-600"
+                whileHover={{ scale: 1.15 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+                <FaInstagramSquare className="w-8 h-8" /> 
+            </motion.a>
+            <motion.a
+                href="https://wa.me/919345000685"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white hover:text-green-500"
+                whileHover={{ scale: 1.15 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+            >
+                <FaWhatsapp className="w-8 h-8" /> 
+            </motion.a>
+        </div>
+      </motion.nav>
 
       {/* Hero Section */}
       <section
         id="home"
-        className="w-full h-[calc(100vh-64px)] pt-16 relative overflow-hidden flex items-center justify-center"
+        className="w-full h-[calc(100vh-64px)] pt-16 relative overflow-hidden flex items-center justify-center bg-black"
       >
         <img
           className="absolute inset-0 w-full h-full object-cover"
-          src={heroBgImage}
+          src={home_page}
           alt="Hero Background"
         />
+        <img
+          className="absolute inset-0 w-full h-full object-cover"
+          src={home_page}
+          alt="Hero Background"
+          style={{ backgroundColor: "#000" }}
+        />
+
         <motion.div
-          className="relative z-10 text-center p-4 max-w-3xl mx-auto"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
+          className="absolute left-10 lg:left-20 z-10 text-left p-4 max-w-md"
+          initial={{ opacity: 0, x: -50, scale: 0.8 }}
+          animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
         >
-          <h1 className="text-white text-3xl sm:text-5xl md:text-6xl font-bold font-rockwell leading-tight drop-shadow-lg">
-            Master Your Craft
+          <h1 className="text-black text-4xl sm:text-6xl lg:text-7xl border-b-4 font-bold font-rockwell leading-tight drop-shadow-lg">
+            TRUE NORTH
+            <br />
+            ACADEMY
           </h1>
-          <p className="text-white text-base sm:text-lg md:text-xl mt-3 max-w-xl mx-auto drop-shadow-md">
-            Unleash your potential through discipline, focus, and ancient
-            traditions.
-          </p>
           <motion.button
-            className="mt-6 px-6 py-2 bg-red-600 text-white text-lg font-bold rounded-full shadow-lg hover:bg-red-700 transition-colors duration-300"
+            className="mt-6 px-6 py-3 bg-red-500 text-white text-lg font-bold  border-4 border-black shadow-lg hover:bg-yellow-500 transition-colors duration-300"
             whileHover={{
               scale: 1.05,
-              boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+              boxShadow: "0 8px 20px rgba(0,0,0,0.2)",
             }}
             whileTap={{ scale: 0.95 }}
             onClick={() =>
               document
-                .getElementById("contact")
+                .getElementById("contact-section")
                 .scrollIntoView({ behavior: "smooth" })
             }
           >
-            Join a Free Class Today!
+            Try a Free Class Today
           </motion.button>
         </motion.div>
       </section>
 
       {/* About Our Classes Section */}
-      <section id="program" className="w-full py-12 bg-white overflow-hidden">
+      <section
+        id="program"
+        className="w-full py-12 bg-gray-700 overflow-hidden"
+      >
         <motion.h2
-          className="text-center text-3xl sm:text-4xl font-bold font-rockwell underline text-black mb-10"
+          className="text-center text-3xl sm:text-4xl font-bold font-rockwell underline text-white mb-10"
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
@@ -182,8 +317,8 @@ const Home = () => {
               "Karate is a traditional Japanese martial art that emphasizes discipline, focus, and powerful striking techniques using punches, kicks, knee strikes, and open-hand techniques.",
             image: karateImage,
             reverse: false,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl", // Default title size
-            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48", // Default image size
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
+            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
           },
           {
             name: "Kick Boxing",
@@ -192,7 +327,7 @@ const Home = () => {
             image: kickBoxingImage,
             reverse: true,
             titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
+            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
           },
           {
             name: "Archery",
@@ -201,7 +336,7 @@ const Home = () => {
             image: archeryImage,
             reverse: false,
             titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
+            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
           },
           {
             name: "Kobudo",
@@ -210,7 +345,7 @@ const Home = () => {
             image: kobudoImage,
             reverse: true,
             titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
+            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
           },
           {
             name: "Drawing",
@@ -219,7 +354,7 @@ const Home = () => {
             image: drawingImage,
             reverse: false,
             titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
+            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
           },
           {
             name: "Silambam",
@@ -228,7 +363,7 @@ const Home = () => {
             image: silambamImage,
             reverse: true,
             titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
+            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
           },
           {
             name: "Yoga",
@@ -237,7 +372,7 @@ const Home = () => {
             image: yogaImage,
             reverse: false,
             titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
+            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
           },
           {
             name: "Abacus",
@@ -246,7 +381,7 @@ const Home = () => {
             image: abacusImage,
             reverse: true,
             titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
+            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
           },
           {
             name: "Bharatanatyam",
@@ -254,10 +389,10 @@ const Home = () => {
               "Bharatanatyam is an ancient and expressive Indian classical dance form from Tamil Nadu.",
             image: bharatanatyamImage,
             reverse: false,
-            titleClass: "text-xl sm:text-2xl lg:text-3xl", // Smaller text for Bharatanatyam
-            imageSizeClass: "w-48 h-48 sm:w-56 sm:h-56", // Larger image for Bharatanatyam
+            titleClass: "text-xl sm:text-2xl lg:text-3xl",
+            imageSizeClass: "w-56 h-56 sm:w-72 sm:h-72",
           },
-        ].map((classItem, index) => (
+        ].map((classItem) => (
           <motion.div
             key={classItem.name}
             className={`flex flex-col items-center justify-center gap-5 md:gap-10 mb-14 px-3 sm:px-6 ${
@@ -304,32 +439,24 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-8 pb-8 max-w-6xl mx-auto">
           {[
             {
-              image: staffPlaceholder,
+              image: karate,
               description: "Instructor of Karate, Kick boxing, Archery.",
             },
             {
-              image: staffPlaceholder,
+              image: draw,
               description: "Instructor of Drawing, Sculptures.",
             },
             {
-              image: staffPlaceholder,
+              image: silambam,
               description: "Instructor of Silambam",
             },
             {
-              image: staffPlaceholder,
-              description: "Instructor of Archery",
-            },
-            {
-              image: staffPlaceholder,
+              image: baratha,
               description: "Instructor of Bharatanatyam, Classical dance.",
             },
-            {
-              image: staffPlaceholder,
-              description: "Instructor of Music",
-            },
-          ].map((staff, index) => (
+          ].map((staff) => (
             <motion.div
-              key={index}
+              key={staff.description}
               className="flex flex-col items-center shadow-lg rounded-lg overflow-hidden bg-white"
               variants={itemVariants}
               initial="hidden"
@@ -337,14 +464,12 @@ const Home = () => {
               viewport={{ once: true, amount: 0.2 }}
             >
               <img
-                className="w-full h-auto object-cover border-b-2 border-black"
+                className="w-full h-80 object-cover  border-b-2 border-black"
                 src={staff.image}
-                alt={`Staff ${index + 1}`}
+                alt={staff.description}
               />
               <div className="w-full bg-red-600 border-t-2 border-black p-3 text-center">
-                <p className="text-white text-sm sm:text-base font-normal font-rockwell leading-relaxed">
-                  {" "}
-                  {/* Smaller font size */}
+                <p className="text-white text-xl sm:text-base font-bold font-rockwell leading-relaxed">
                   {staff.description}
                 </p>
               </div>
@@ -353,237 +478,278 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Contact Us Section - Top Part */}
-      <section
-        id="contact"
-        className="w-full py-10 bg-red-600 overflow-hidden text-center shadow-inner"
-      >
-        <motion.h2
-          className="text-white text-3xl sm:text-4xl font-bold font-rockwell tracking-wider mb-3"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-        >
-          CONTACT US
-        </motion.h2>
-        <motion.p
-          className="text-black text-base sm:text-lg font-normal font-rockwell leading-relaxed px-4 max-w-3xl mx-auto"
-          variants={itemVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ delay: 0.2 }}
-        >
-          Should you have any questions, please feel free to reach us @{" "}
-          <span className="font-bold">93450 00685 / 70100 78309</span>
-        </motion.p>
-      </section>
-
-      {/* Get In Touch Form Section */}
-      <section className="w-full py-12 bg-white overflow-hidden">
-        <form
-          ref={form}
-          onSubmit={sendEmail}
-          className="max-w-xl mx-auto px-4 sm:px-6"
-        >
-          <motion.div
-            className="mb-4"
-            variants={itemVariants}
+      {/* Contact Us Section */}
+      <div id="contact-section" className="w-full">
+        <section className="w-full py-10 bg-red-600 overflow-hidden text-center shadow-inner">
+          <motion.h2
+            className="text-white text-3xl sm:text-4xl font-bold font-rockwell tracking-wider mb-3"
+            variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.5 }}
           >
-            <label
-              htmlFor="user_first_name"
-              className="block text-black text-base font-rockwell leading-tight mb-1"
-            >
-              Your First Name
-            </label>
-            <input
-              type="text"
-              id="user_first_name"
-              name="user_first_name"
-              className="w-full p-2 border border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
-            />
-          </motion.div>
-
-          <motion.div
-            className="mb-4"
+            CONTACT US
+          </motion.h2>
+          <motion.p
+            className="text-white text-lg font-normal font-rockwell leading-relaxed px-4 max-w-3xl mx-auto"
             variants={itemVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.1 }}
-          >
-            <label
-              htmlFor="user_last_name"
-              className="block text-black text-base font-rockwell leading-tight mb-1"
-            >
-              Your Last Name
-            </label>
-            <input
-              type="text"
-              id="user_last_name"
-              name="user_last_name"
-              className="w-full p-2 border border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
-            />
-          </motion.div>
-
-          <motion.div
-            className="mb-4"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.5 }}
             transition={{ delay: 0.2 }}
           >
-            <label
-              htmlFor="user_email"
-              className="block text-black text-base font-rockwell leading-tight mb-1"
+            Should you have any questions, please feel free to reach us @{" "}
+            <span className="font-bold text-xl">93450 00685 / 70100 78309</span>
+          </motion.p>
+        </section>
+
+        {/* Get In Touch Form Section */}
+        <section className="w-full py-12 bg-white overflow-hidden">
+          <form
+            ref={form}
+            onSubmit={sendEmail}
+            className="max-w-xl mx-auto px-4 sm:px-6"
+          >
+            <motion.div
+              className="mb-4"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
             >
-              Your Email<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="email"
-              id="user_email"
-              name="user_email"
-              className="w-full p-2 border border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
-              required
-            />
-          </motion.div>
+              <label
+                htmlFor="user_first_name"
+                className="block text-black text-base font-rockwell leading-tight mb-1"
+              >
+                Your Name
+              </label>
+              <input
+                type="text"
+                id="user_first_name"
+                name="user_first_name"
+                className="w-full p-2 border-4 border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
+              />
+            </motion.div>
 
-          <motion.div
-            className="mb-4"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.3 }}
-          >
-            <label
-              htmlFor="user_phone"
-              className="block text-black text-base font-rockwell leading-tight mb-1"
+            <motion.div
+              className="mb-4"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.2 }}
             >
-              Your Phone No.
-            </label>
-            <input
-              type="tel"
-              id="user_phone"
-              name="user_phone"
-              className="w-full p-2 border border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
-            />
-          </motion.div>
+              <label
+                htmlFor="user_email"
+                className="block text-black text-base font-rockwell leading-tight mb-1"
+              >
+                Your Email<span className="text-red-600">*</span>
+              </label>
+              <input
+                type="email"
+                id="user_email"
+                name="user_email"
+                className="w-full p-2 border-4 border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
+                required
+              />
+            </motion.div>
 
-          <motion.div
-            className="mb-6"
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ delay: 0.4 }}
-          >
-            <label
-              htmlFor="user_programs"
-              className="block text-black text-base font-rockwell leading-tight mb-1"
+            <motion.div
+              className="mb-4"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.3 }}
             >
-              Programs of Interest
-            </label>
-            <input
-              type="text"
-              id="user_programs"
-              name="user_programs"
-              className="w-full p-2 border border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
-              placeholder="e.g., Karate, Drawing"
-            />
-          </motion.div>
+              <label
+                htmlFor="user_phone"
+                className="block text-black text-base font-rockwell leading-tight mb-1"
+              >
+                Your Phone No.
+              </label>
+              <input
+                type="tel"
+                id="user_phone"
+                name="user_phone"
+                className="w-full p-2 border-4 border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
+              />
+            </motion.div>
 
-          <motion.button
-            type="submit"
-            className="w-full py-2 bg-red-600 text-white text-lg font-bold font-rockwell rounded-md shadow-md hover:bg-red-700 transition-colors duration-300"
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
-            variants={itemVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            transition={{ delay: 0.5 }}
-          >
-            Get In Touch
-          </motion.button>
-        </form>
-      </section>
+            <motion.div
+              className="mb-6"
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.2 }}
+              transition={{ delay: 0.4 }}
+            >
+              <label
+                htmlFor="user_programs"
+                className="block text-black text-base font-rockwell leading-tight mb-1"
+              >
+                Programs of Interest
+              </label>
+              <select
+                id="user_programs"
+                name="user_programs"
+                className="w-full p-2 border-4 border-black focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
+                required
+              >
+                <option value="" disabled selected>
+                  -- Select a Program --
+                </option>
+                <option value="Karate">Karate</option>
+                <option value="Kick Boxing">Kick Boxing</option>
+                <option value="Archery">Archery</option>
+                <option value="Kobudo">Kobudo</option>
+                <option value="Drawing">Drawing</option>
+                <option value="Silambam">Silambam</option>
+                <option value="Yoga">Yoga</option>
+                <option value="Abacus">Abacus</option>
+                <option value="Bharatanatyam">Bharatanatyam</option>
+              </select>
+            </motion.div>
 
-      {/* Map Section */}
-      <section className="w-full h-[280px] md:h-[350px] lg:h-[400px] bg-stone-200 relative overflow-hidden flex items-center justify-center">
-        {/* Updated Google Map iframe src to use the provided latitude and longitude */}
-        <iframe
-          src="https://maps.google.com/maps?q=8.698684972781777,77.73707078198663&t=&z=16&ie=UTF8&iwloc=&output=embed"
-          width="100%"
-          height="100%"
-          style={{ border: 0 }}
-          allowFullScreen=""
-          loading="lazy"
-          referrerPolicy="no-referrer-when-downgrade"
-          title="True North Location"
-          className="absolute inset-0 z-0"
-        ></iframe>
+            <motion.button
+              type="submit"
+              className="w-full py-2 bg-red-600 text-white text-lg font-bold font-rockwell rounded-md shadow-md hover:bg-red-700 transition-colors duration-300"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              variants={itemVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ delay: 0.5 }}
+            >
+              Get In Touch
+            </motion.button>
+          </form>
+        </section>
+      </div>
 
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
-          {/* Made the pin clickable to open Google Maps in a new tab */}
-          <motion.div
-            className="w-6 h-10 mb-2 cursor-pointer" // Added cursor-pointer
-            onClick={() =>
-              window.open(
-                "https://www.google.com/maps/search/?api=1&query=8.698684972781777,77.73707078198663",
-                "_blank"
-              )
-            }
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-          >
-            <p
-              src={locationPin}
-              alt="Pin"
-              className="w-full h-full object-contain"
-            />
-          </motion.div>
-          <motion.div
-            className="bg-white rounded-lg shadow-xl p-2 text-center min-w-[180px] mt-15"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
-          >
-            <h3 className="text-black text-base font-bold font-roboto mb-1">
-              True North Location
-            </h3>
-            <p className="text-gray-700 text-xs">
-              Based on provided coordinates.
-            </p>
-            <p className="text-gray-700 text-xs">
-              Tirunelveli, Tamil Nadu, India
-            </p>
-          </motion.div>
-        </div>
-      </section>
+      <TrueNorthMap />
 
-      {/* Stay Updated Footer */}
+      {/* Copyright Footer */}
       <motion.footer
-        className="w-full py-10 bg-black text-center"
+        className="w-full py-10 bg-black text-white"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6 }}
       >
-        <p className="text-white text-lg sm:text-xl font-bold font-rockwell px-4 max-w-3xl mx-auto leading-relaxed">
-          📍 3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram,
-          Tirunelveli.
-        </p>
-        {/* New Copyright Notice */}
-        <p className="text-gray-400 text-sm mt-4 font-roboto">
-          &copy; 2025 True North. All rights reserved.
-        </p>
+        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Column 1: About True North */}
+          <div>
+            <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
+              True North Academy
+            </h3>
+            <p className="text-gray-300 text-sm font-roboto leading-relaxed">
+              Dedicated to fostering discipline, focus, and creativity through
+              traditional and modern classes like Karate, Silambam, Yoga,
+              Drawing, and more. We empower individuals to master their craft
+              and unleash their full potential.
+            </p>
+            <p className="text-gray-400 text-xs mt-2 font-roboto">
+              "Master Your Craft, Unleash Your Potential"
+            </p>
+          </div>
+
+          {/* Column 2: Contact & Location */}
+          <div>
+            <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
+              Contact & Visit Us
+            </h3>
+            <p className="text-gray-300 text-sm font-roboto">
+              📍 3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram,
+              Tirunelveli, Tamil Nadu, India.
+            </p>
+            <p className="text-gray-300 text-sm mt-2 font-roboto">
+              📞 +91 93450 00685
+            </p>
+            <p className="text-gray-300 text-sm mt-1 font-roboto">
+              📞 +91 70100 78309
+            </p>
+            <p className="text-gray-300 text-sm mt-1 font-roboto">
+              ✉️ info@truenorthacademy.com
+            </p>
+            <p className="text-gray-400 text-xs mt-2 font-roboto">
+              Business Hours: Mon-Sat: 9:00 AM - 7:00 PM
+            </p>
+          </div>
+
+          {/* Column 3: Quick Links & Socials */}
+          <div>
+            <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
+              Quick Links
+            </h3>
+            <ul className="space-y-2">
+              <li>
+                <a
+                  href="#home"
+                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                >
+                  Home
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#program"
+                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Our Programs
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#staff"
+                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Meet Our Staff
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#contact-section"
+                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  Contact Us
+                </a>
+              </li>
+            </ul>
+
+            <h3 className="text-xl font-bold font-rockwell mt-6 mb-4 text-orange-500">
+              Follow Us
+            </h3>
+            <div className="flex space-x-4">
+              <a
+                href="https://www.instagram.com/tnorthco/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-orange-600"
+              >
+                <FaInstagramSquare className="w-8 h-8" />
+              </a>
+              <a
+                href="https://wa.me/919345000685"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-gray-300 hover:text-green-600"
+              >
+                <FaWhatsapp className="w-8 h-8" />
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-3 pt-2 border-t border-gray-700 text-center">
+          <p className="text-gray-400 text-sm font-roboto">
+            © {new Date().getFullYear()} True North. All rights reserved.
+          </p>
+        </div>
       </motion.footer>
     </div>
   );
