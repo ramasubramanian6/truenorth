@@ -1,10 +1,10 @@
 // Home.jsx
 import React, { useRef } from 'react';
 import { motion } from 'framer-motion';
-import emailjs from 'emailjs-com';
+import emailjs from 'emailjs-com'; // Correct import for modern emailjs-com
 
 // --- Local Image Imports ---
-// Make sure these paths are correct relative to your Home.jsx file
+// Ensure these paths are correct relative to your Home.jsx file
 import logoImage from './assets/react.svg'; // Assuming react.svg is your logo
 import abacusImage from './assets/TRUENORTH-abacus.jpeg';
 import archeryImage from './assets/TRUENORTH-archery.jpeg';
@@ -17,12 +17,12 @@ import silambamImage from './assets/TRUENORTH-silambam.jpeg';
 import yogaImage from './assets/TRUENORTH-yoga.jpeg';
 
 // --- Placeholder/Remote Image URLs (do NOT import these as modules) ---
-// If you have actual local files for these, uncomment the import and replace the URL.
-const heroBgImage = 'https://placehold.co/1440x920'; // Keep as string if it's a remote placeholder
-const socialIcon1 = 'https://placehold.co/40x40';   // Keep as string if it's a remote placeholder
-const socialIcon2 = 'https://placehold.co/40x40';   // Keep as string if it's a remote placeholder
-const staffPlaceholder = 'https://placehold.co/368x355'; // Keep as string if it's a remote placeholder
-const locationPin = 'https://www.svgrepo.com/show/513515/location-pin.svg'; // Keep as string for the SVG icon
+// If you have actual local files for these, change them from const to import and provide the path.
+const heroBgImage = 'https://placehold.co/1440x920'; // Replace with your actual hero background image path if available
+const socialIcon1 = 'https://placehold.co/40x40';   // Replace with your actual social icon 1 path
+const socialIcon2 = 'https://placehold.co/40x40';   // Replace with your actual social icon 2 path
+const staffPlaceholder = 'https://placehold.co/368x355'; // Replace with your actual staff image placeholder or default
+const locationPin = 'https://www.svgrepo.com/show/513515/location-pin.svg'; // SVG icon for the map pin
 
 const Home = () => {
   const form = useRef();
@@ -93,14 +93,14 @@ const Home = () => {
         <div className="flex items-center space-x-2 sm:space-x-3">
           <motion.img
             className="w-7 h-7 sm:w-8 sm:h-8 cursor-pointer opacity-80 hover:opacity-100"
-            src={socialIcon1} // Using string variable
+            src={socialIcon1}
             alt="Social Icon 1"
             whileHover={{ scale: 1.15 }}
             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
           />
           <motion.img
             className="w-7 h-7 sm:w-8 sm:h-8 cursor-pointer opacity-80 hover:opacity-100"
-            src={socialIcon2} // Using string variable
+            src={socialIcon2}
             alt="Social Icon 2"
             whileHover={{ scale: 1.15 }}
             transition={{ type: 'spring', stiffness: 400, damping: 10 }}
@@ -112,7 +112,7 @@ const Home = () => {
       <section id="home" className="w-full h-[calc(100vh-64px)] pt-16 relative overflow-hidden flex items-center justify-center">
         <img
           className="absolute inset-0 w-full h-full object-cover"
-          src={heroBgImage} // Using string variable
+          src={heroBgImage}
           alt="Hero Background"
         />
         <motion.div
@@ -158,6 +158,8 @@ const Home = () => {
               'Karate is a traditional Japanese martial art that emphasizes discipline, focus, and powerful striking techniques using punches, kicks, knee strikes, and open-hand techniques.',
             image: karateImage,
             reverse: false,
+            titleClass: 'text-2xl sm:text-3xl lg:text-4xl', // Default title size
+            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48', // Default image size
           },
           {
             name: 'Kick Boxing',
@@ -165,6 +167,8 @@ const Home = () => {
               'Kickboxing is a dynamic combat sport that blends the powerful punches of boxing with the agile kicks of martial arts.',
             image: kickBoxingImage,
             reverse: true,
+            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
+            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
           },
           {
             name: 'Archery',
@@ -172,6 +176,8 @@ const Home = () => {
               'Archery is the art of precision and patience, where focus meets grace in every shot. With every arrow released, archery teaches control, discipline, and the power of a calm mind.',
             image: archeryImage,
             reverse: false,
+            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
+            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
           },
           {
             name: 'Kobudo',
@@ -179,6 +185,8 @@ const Home = () => {
               'Kobudo is the ancient Okinawan martial art focusing on the use of traditional weapons like the bo, nunchaku, kama, and sai.',
             image: kobudoImage,
             reverse: true,
+            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
+            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
           },
           {
             name: 'Drawing',
@@ -186,6 +194,8 @@ const Home = () => {
               'Drawing is the art of seeing with your hands, where imagination flows through every line and shape.',
             image: drawingImage,
             reverse: false,
+            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
+            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
           },
           {
             name: 'Silambam',
@@ -193,6 +203,8 @@ const Home = () => {
               'Silambam is an ancient and dynamic martial art from Tamil Nadu, India, characterized by its fluid movements and weapon-based combat, primarily using a bamboo staff.',
             image: silambamImage,
             reverse: true,
+            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
+            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
           },
           {
             name: 'Yoga',
@@ -200,6 +212,8 @@ const Home = () => {
               'Yoga is a holistic practice originating in ancient India, combining physical postures, breathing techniques, and meditation to foster harmony between mind, body, and spirit.',
             image: yogaImage,
             reverse: false,
+            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
+            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
           },
           {
             name: 'Abacus',
@@ -207,6 +221,8 @@ const Home = () => {
               'The abacus is an ancient calculating tool that uses beads on rods to perform arithmetic operations, predating modern electronic calculators and still used today for teaching fundamental number concepts.',
             image: abacusImage,
             reverse: true,
+            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
+            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
           },
           {
             name: 'Bharatanatyam',
@@ -214,6 +230,8 @@ const Home = () => {
               'Bharatanatyam is an ancient and expressive Indian classical dance form from Tamil Nadu.',
             image: bharatanatyamImage,
             reverse: false,
+            titleClass: 'text-xl sm:text-2xl lg:text-3xl', // Smaller text for Bharatanatyam
+            imageSizeClass: 'w-48 h-48 sm:w-56 sm:h-56', // Larger image for Bharatanatyam
           },
         ].map((classItem, index) => (
           <motion.div
@@ -227,14 +245,14 @@ const Home = () => {
             viewport={{ once: true, amount: 0.2 }}
           >
             <motion.img
-              className="w-40 h-40 sm:w-48 sm:h-48 rounded-md object-cover flex-shrink-0"
+              className={`${classItem.imageSizeClass} rounded-md object-cover flex-shrink-0`}
               src={classItem.image}
               alt={classItem.name}
               whileHover={{ scale: 1.03 }}
               transition={{ duration: 0.3 }}
             />
             <motion.div className="w-full max-w-2xl bg-red-600 rounded-md p-5 shadow-lg">
-              <h3 className="text-white text-2xl sm:text-3xl lg:text-4xl font-bold font-rockwell mb-2 text-center md:text-left">
+              <h3 className={`text-white font-bold font-rockwell mb-2 text-center md:text-left ${classItem.titleClass}`}>
                 {classItem.name}
               </h3>
               <p className="text-white text-sm sm:text-base lg:text-lg font-normal font-rockwell leading-relaxed text-center md:text-left">
@@ -260,27 +278,27 @@ const Home = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-8 pb-8 max-w-6xl mx-auto">
           {[
             {
-              image: staffPlaceholder, // Using string variable
+              image: staffPlaceholder,
               description: 'Instructor of Karate, Kick boxing, Archery.',
             },
             {
-              image: staffPlaceholder, // Using string variable
+              image: staffPlaceholder,
               description: 'Instructor of Drawing, Sculptures.',
             },
             {
-              image: staffPlaceholder, // Using string variable
+              image: staffPlaceholder,
               description: 'Instructor of Silambam',
             },
             {
-              image: staffPlaceholder, // Using string variable
+              image: staffPlaceholder,
               description: 'Instructor of Archery',
             },
             {
-              image: staffPlaceholder, // Using string variable
-              description: 'Instructor of Bharatnatyam, Classical dance.',
+              image: staffPlaceholder,
+              description: 'Instructor of Bharatanatyam, Classical dance.',
             },
             {
-              image: staffPlaceholder, // Using string variable
+              image: staffPlaceholder,
               description: 'Instructor of Music',
             },
           ].map((staff, index) => (
@@ -298,7 +316,7 @@ const Home = () => {
                 alt={`Staff ${index + 1}`}
               />
               <div className="w-full bg-red-600 border-t-2 border-black p-3 text-center">
-                <p className="text-white text-base sm:text-lg font-normal font-rockwell leading-relaxed">
+                <p className="text-white text-sm sm:text-base font-normal font-rockwell leading-relaxed"> {/* Smaller font size */}
                   {staff.description}
                 </p>
               </div>
@@ -448,21 +466,29 @@ const Home = () => {
 
       {/* Map Section */}
       <section className="w-full h-[280px] md:h-[350px] lg:h-[400px] bg-stone-200 relative overflow-hidden flex items-center justify-center">
-        {/* Placeholder for Google Map - In a real application, replace this with an embedded Google Map iframe */}
+        {/* Updated Google Map iframe src to use the provided latitude and longitude */}
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3944.423985790403!2d77.69742417502422!3d8.718049891823795!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b0412e88a0b0f4d%3A0xc3f605a92a5b6d0!2sMeena%20Plaza!5e0!3m2!1sen!2sin!4v1719407338574!5m2!1sen!2sin"
+          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3941.687399346396!2d77.73707078198663!3d8.698684972781777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1719405021237"
           width="100%"
           height="100%"
           style={{ border: 0 }}
           allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
-          title="Roundhouse Karate School Location"
+          title="True North Location"
           className="absolute inset-0 z-0"
         ></iframe>
 
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-10 flex flex-col items-center">
-          <img className="w-6 h-10 mb-2" src={locationPin} alt="Location Pin" />
+          {/* Made the pin clickable to open Google Maps in a new tab */}
+          <motion.div
+            className="w-6 h-10 mb-2 cursor-pointer" // Added cursor-pointer
+            onClick={() => window.open('https://www.google.com/maps?q=8.698684972781777,77.73707078198663&z=16', '_blank')}
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <img src={locationPin} alt="Location Pin" className="w-full h-full object-contain"/>
+          </motion.div>
           <motion.div
             className="bg-white rounded-lg shadow-xl p-3 text-center min-w-[180px]"
             initial={{ opacity: 0, y: 20 }}
@@ -470,9 +496,8 @@ const Home = () => {
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-black text-base font-bold font-roboto mb-1">Roundhouse Karate School</h3>
-            <p className="text-gray-700 text-xs">3rd Floor, Meena Plaza,</p>
-            <p className="text-gray-700 text-xs">60 Feet Road, Perumalpuram,</p>
+            <h3 className="text-black text-base font-bold font-roboto mb-1">True North Location</h3>
+            <p className="text-gray-700 text-xs">Based on provided coordinates.</p>
             <p className="text-gray-700 text-xs">Tirunelveli, Tamil Nadu, India</p>
           </motion.div>
         </div>
