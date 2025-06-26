@@ -1,28 +1,29 @@
 // Home.jsx
-import React, { useRef } from 'react';
-import { motion } from 'framer-motion';
-import emailjs from 'emailjs-com'; // Correct import for modern emailjs-com
+import React, { useRef } from "react";
+import { motion } from "framer-motion";
+import emailjs from "emailjs-com"; // Correct import for modern emailjs-com
 
 // --- Local Image Imports ---
 // Ensure these paths are correct relative to your Home.jsx file
-import logoImage from './assets/react.svg'; // Assuming react.svg is your logo
-import abacusImage from './assets/TRUENORTH-abacus.jpeg';
-import archeryImage from './assets/TRUENORTH-archery.jpeg';
-import bharatanatyamImage from './assets/TRUENORTH-bharatanatyam.jpeg';
-import drawingImage from './assets/TRUENORTH-drawing.jpeg';
-import karateImage from './assets/TRUENORTH-karate.png';
-import kickBoxingImage from './assets/TRUENORTH-kick boxing.jpg';
-import kobudoImage from './assets/TRUENORTH-kobudo.jpeg';
-import silambamImage from './assets/TRUENORTH-silambam.jpeg';
-import yogaImage from './assets/TRUENORTH-yoga.jpeg';
+import logoImage from "./assets/react.svg"; // Assuming react.svg is your logo
+import abacusImage from "./assets/TRUENORTH-abacus.jpeg";
+import archeryImage from "./assets/TRUENORTH-archery.jpeg";
+import bharatanatyamImage from "./assets/TRUENORTH-bharatanatyam.jpeg";
+import drawingImage from "./assets/TRUENORTH-drawing.jpeg";
+import karateImage from "./assets/TRUENORTH-karate.png";
+import kickBoxingImage from "./assets/TRUENORTH-kick boxing.jpg";
+import kobudoImage from "./assets/TRUENORTH-kobudo.jpeg";
+import silambamImage from "./assets/TRUENORTH-silambam.jpeg";
+import yogaImage from "./assets/TRUENORTH-yoga.jpeg";
+import pin from "./assets/pin.png";
 
 // --- Placeholder/Remote Image URLs (do NOT import these as modules) ---
 // If you have actual local files for these, change them from const to import and provide the path.
-const heroBgImage = 'https://placehold.co/1440x920'; // Replace with your actual hero background image path if available
-const socialIcon1 = 'https://placehold.co/40x40';   // Replace with your actual social icon 1 path
-const socialIcon2 = 'https://placehold.co/40x40';   // Replace with your actual social icon 2 path
-const staffPlaceholder = 'https://placehold.co/368x355'; // Replace with your actual staff image placeholder or default
-const locationPin = 'https://www.svgrepo.com/show/513515/location-pin.svg'; // SVG icon for the map pin
+const heroBgImage = "https://placehold.co/1440x920"; // Replace with your actual hero background image path if available
+const socialIcon1 = "https://placehold.co/40x40"; // Replace with your actual social icon 1 path
+const socialIcon2 = "https://placehold.co/40x40"; // Replace with your actual social icon 2 path
+const staffPlaceholder = "https://placehold.co/368x355"; // Replace with your actual staff image placeholder or default
+const locationPin = "https://www.svgrepo.com/show/513515/location-pin.svg"; // SVG icon for the map pin
 
 const Home = () => {
   const form = useRef();
@@ -31,32 +32,40 @@ const Home = () => {
     e.preventDefault();
 
     emailjs
-      .sendForm('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', form.current, {
-        publicKey: 'YOUR_PUBLIC_KEY',
+      .sendForm("YOUR_SERVICE_ID", "YOUR_TEMPLATE_ID", form.current, {
+        publicKey: "YOUR_PUBLIC_KEY",
       })
       .then(
         () => {
-          console.log('SUCCESS!');
-          alert('Message sent successfully!');
+          console.log("SUCCESS!");
+          alert("Message sent successfully!");
           form.current.reset();
         },
         (error) => {
-          console.log('FAILED...', error.text);
-          alert('Failed to send message. Please try again later.');
-        },
+          console.log("FAILED...", error.text);
+          alert("Failed to send message. Please try again later.");
+        }
       );
   };
 
   // Animation variants for sections
   const sectionVariants = {
     hidden: { opacity: 0, y: 50 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: 'easeOut' } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" },
+    },
   };
 
   // Animation variants for items within sections (staggered effect)
   const itemVariants = {
     hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: 'easeOut' } },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
   };
 
   return (
@@ -66,29 +75,33 @@ const Home = () => {
         className="w-full h-16 bg-black bg-opacity-80 flex items-center justify-between px-3 sm:px-6 shadow-lg fixed top-0 left-0 z-50"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
-        transition={{ type: 'spring', stiffness: 120, damping: 15 }}
+        transition={{ type: "spring", stiffness: 120, damping: 15 }}
       >
         <motion.img
           className="w-14 h-14 sm:w-16 sm:h-16 rounded-full object-cover"
           src={logoImage}
           alt="Logo"
           whileHover={{ scale: 1.05 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+          transition={{ type: "spring", stiffness: 400, damping: 10 }}
         />
         <nav className="hidden md:flex space-x-5 lg:space-x-8">
-          {['Home', 'About', 'Program', 'Staff', 'Contact'].map((item, index) => (
-            <motion.a
-              key={item}
-              href={`#${item.toLowerCase()}`}
-              className={`text-center text-base lg:text-lg font-medium font-roboto leading-normal transition-colors duration-300 ${
-                item === 'Home' ? 'text-orange-500' : 'text-white hover:text-orange-500'
-              }`}
-              whileHover={{ scale: 1.1 }}
-              transition={{ type: 'spring', stiffness: 400, damping: 10 }}
-            >
-              {item}
-            </motion.a>
-          ))}
+          {["Home", "About", "Program", "Staff", "Contact"].map(
+            (item, index) => (
+              <motion.a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className={`text-center text-base lg:text-lg font-medium font-roboto leading-normal transition-colors duration-300 ${
+                  item === "Home"
+                    ? "text-orange-500"
+                    : "text-white hover:text-orange-500"
+                }`}
+                whileHover={{ scale: 1.1 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
+              >
+                {item}
+              </motion.a>
+            )
+          )}
         </nav>
         <div className="flex items-center space-x-2 sm:space-x-3">
           <motion.img
@@ -96,20 +109,23 @@ const Home = () => {
             src={socialIcon1}
             alt="Social Icon 1"
             whileHover={{ scale: 1.15 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
           <motion.img
             className="w-7 h-7 sm:w-8 sm:h-8 cursor-pointer opacity-80 hover:opacity-100"
             src={socialIcon2}
             alt="Social Icon 2"
             whileHover={{ scale: 1.15 }}
-            transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
         </div>
       </motion.header>
 
       {/* Hero Section */}
-      <section id="home" className="w-full h-[calc(100vh-64px)] pt-16 relative overflow-hidden flex items-center justify-center">
+      <section
+        id="home"
+        className="w-full h-[calc(100vh-64px)] pt-16 relative overflow-hidden flex items-center justify-center"
+      >
         <img
           className="absolute inset-0 w-full h-full object-cover"
           src={heroBgImage}
@@ -119,19 +135,27 @@ const Home = () => {
           className="relative z-10 text-center p-4 max-w-3xl mx-auto"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.8, delay: 0.5, ease: 'easeOut' }}
+          transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
         >
           <h1 className="text-white text-3xl sm:text-5xl md:text-6xl font-bold font-rockwell leading-tight drop-shadow-lg">
             Master Your Craft
           </h1>
           <p className="text-white text-base sm:text-lg md:text-xl mt-3 max-w-xl mx-auto drop-shadow-md">
-            Unleash your potential through discipline, focus, and ancient traditions.
+            Unleash your potential through discipline, focus, and ancient
+            traditions.
           </p>
           <motion.button
             className="mt-6 px-6 py-2 bg-red-600 text-white text-lg font-bold rounded-full shadow-lg hover:bg-red-700 transition-colors duration-300"
-            whileHover={{ scale: 1.05, boxShadow: '0 8px 20px rgba(0,0,0,0.3)' }}
+            whileHover={{
+              scale: 1.05,
+              boxShadow: "0 8px 20px rgba(0,0,0,0.3)",
+            }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => document.getElementById('contact').scrollIntoView({ behavior: 'smooth' })}
+            onClick={() =>
+              document
+                .getElementById("contact")
+                .scrollIntoView({ behavior: "smooth" })
+            }
           >
             Join a Free Class Today!
           </motion.button>
@@ -153,91 +177,91 @@ const Home = () => {
         {/* Class Listings */}
         {[
           {
-            name: 'Karate',
+            name: "Karate",
             description:
-              'Karate is a traditional Japanese martial art that emphasizes discipline, focus, and powerful striking techniques using punches, kicks, knee strikes, and open-hand techniques.',
+              "Karate is a traditional Japanese martial art that emphasizes discipline, focus, and powerful striking techniques using punches, kicks, knee strikes, and open-hand techniques.",
             image: karateImage,
             reverse: false,
-            titleClass: 'text-2xl sm:text-3xl lg:text-4xl', // Default title size
-            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48', // Default image size
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl", // Default title size
+            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48", // Default image size
           },
           {
-            name: 'Kick Boxing',
+            name: "Kick Boxing",
             description:
-              'Kickboxing is a dynamic combat sport that blends the powerful punches of boxing with the agile kicks of martial arts.',
+              "Kickboxing is a dynamic combat sport that blends the powerful punches of boxing with the agile kicks of martial arts.",
             image: kickBoxingImage,
             reverse: true,
-            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
-            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
+            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
           },
           {
-            name: 'Archery',
+            name: "Archery",
             description:
-              'Archery is the art of precision and patience, where focus meets grace in every shot. With every arrow released, archery teaches control, discipline, and the power of a calm mind.',
+              "Archery is the art of precision and patience, where focus meets grace in every shot. With every arrow released, archery teaches control, discipline, and the power of a calm mind.",
             image: archeryImage,
             reverse: false,
-            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
-            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
+            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
           },
           {
-            name: 'Kobudo',
+            name: "Kobudo",
             description:
-              'Kobudo is the ancient Okinawan martial art focusing on the use of traditional weapons like the bo, nunchaku, kama, and sai.',
+              "Kobudo is the ancient Okinawan martial art focusing on the use of traditional weapons like the bo, nunchaku, kama, and sai.",
             image: kobudoImage,
             reverse: true,
-            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
-            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
+            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
           },
           {
-            name: 'Drawing',
+            name: "Drawing",
             description:
-              'Drawing is the art of seeing with your hands, where imagination flows through every line and shape.',
+              "Drawing is the art of seeing with your hands, where imagination flows through every line and shape.",
             image: drawingImage,
             reverse: false,
-            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
-            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
+            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
           },
           {
-            name: 'Silambam',
+            name: "Silambam",
             description:
-              'Silambam is an ancient and dynamic martial art from Tamil Nadu, India, characterized by its fluid movements and weapon-based combat, primarily using a bamboo staff.',
+              "Silambam is an ancient and dynamic martial art from Tamil Nadu, India, characterized by its fluid movements and weapon-based combat, primarily using a bamboo staff.",
             image: silambamImage,
             reverse: true,
-            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
-            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
+            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
           },
           {
-            name: 'Yoga',
+            name: "Yoga",
             description:
-              'Yoga is a holistic practice originating in ancient India, combining physical postures, breathing techniques, and meditation to foster harmony between mind, body, and spirit.',
+              "Yoga is a holistic practice originating in ancient India, combining physical postures, breathing techniques, and meditation to foster harmony between mind, body, and spirit.",
             image: yogaImage,
             reverse: false,
-            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
-            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
+            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
           },
           {
-            name: 'Abacus',
+            name: "Abacus",
             description:
-              'The abacus is an ancient calculating tool that uses beads on rods to perform arithmetic operations, predating modern electronic calculators and still used today for teaching fundamental number concepts.',
+              "The abacus is an ancient calculating tool that uses beads on rods to perform arithmetic operations, predating modern electronic calculators and still used today for teaching fundamental number concepts.",
             image: abacusImage,
             reverse: true,
-            titleClass: 'text-2xl sm:text-3xl lg:text-4xl',
-            imageSizeClass: 'w-40 h-40 sm:w-48 sm:h-48',
+            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
+            imageSizeClass: "w-40 h-40 sm:w-48 sm:h-48",
           },
           {
-            name: 'Bharatanatyam',
+            name: "Bharatanatyam",
             description:
-              'Bharatanatyam is an ancient and expressive Indian classical dance form from Tamil Nadu.',
+              "Bharatanatyam is an ancient and expressive Indian classical dance form from Tamil Nadu.",
             image: bharatanatyamImage,
             reverse: false,
-            titleClass: 'text-xl sm:text-2xl lg:text-3xl', // Smaller text for Bharatanatyam
-            imageSizeClass: 'w-48 h-48 sm:w-56 sm:h-56', // Larger image for Bharatanatyam
+            titleClass: "text-xl sm:text-2xl lg:text-3xl", // Smaller text for Bharatanatyam
+            imageSizeClass: "w-48 h-48 sm:w-56 sm:h-56", // Larger image for Bharatanatyam
           },
         ].map((classItem, index) => (
           <motion.div
             key={classItem.name}
             className={`flex flex-col items-center justify-center gap-5 md:gap-10 mb-14 px-3 sm:px-6 ${
-              classItem.reverse ? 'md:flex-row-reverse' : 'md:flex-row'
+              classItem.reverse ? "md:flex-row-reverse" : "md:flex-row"
             }`}
             variants={itemVariants}
             initial="hidden"
@@ -252,7 +276,9 @@ const Home = () => {
               transition={{ duration: 0.3 }}
             />
             <motion.div className="w-full max-w-2xl bg-red-600 rounded-md p-5 shadow-lg">
-              <h3 className={`text-white font-bold font-rockwell mb-2 text-center md:text-left ${classItem.titleClass}`}>
+              <h3
+                className={`text-white font-bold font-rockwell mb-2 text-center md:text-left ${classItem.titleClass}`}
+              >
                 {classItem.name}
               </h3>
               <p className="text-white text-sm sm:text-base lg:text-lg font-normal font-rockwell leading-relaxed text-center md:text-left">
@@ -279,27 +305,27 @@ const Home = () => {
           {[
             {
               image: staffPlaceholder,
-              description: 'Instructor of Karate, Kick boxing, Archery.',
+              description: "Instructor of Karate, Kick boxing, Archery.",
             },
             {
               image: staffPlaceholder,
-              description: 'Instructor of Drawing, Sculptures.',
+              description: "Instructor of Drawing, Sculptures.",
             },
             {
               image: staffPlaceholder,
-              description: 'Instructor of Silambam',
+              description: "Instructor of Silambam",
             },
             {
               image: staffPlaceholder,
-              description: 'Instructor of Archery',
+              description: "Instructor of Archery",
             },
             {
               image: staffPlaceholder,
-              description: 'Instructor of Bharatanatyam, Classical dance.',
+              description: "Instructor of Bharatanatyam, Classical dance.",
             },
             {
               image: staffPlaceholder,
-              description: 'Instructor of Music',
+              description: "Instructor of Music",
             },
           ].map((staff, index) => (
             <motion.div
@@ -316,7 +342,9 @@ const Home = () => {
                 alt={`Staff ${index + 1}`}
               />
               <div className="w-full bg-red-600 border-t-2 border-black p-3 text-center">
-                <p className="text-white text-sm sm:text-base font-normal font-rockwell leading-relaxed"> {/* Smaller font size */}
+                <p className="text-white text-sm sm:text-base font-normal font-rockwell leading-relaxed">
+                  {" "}
+                  {/* Smaller font size */}
                   {staff.description}
                 </p>
               </div>
@@ -326,7 +354,10 @@ const Home = () => {
       </section>
 
       {/* Contact Us Section - Top Part */}
-      <section id="contact" className="w-full py-10 bg-red-600 overflow-hidden text-center shadow-inner">
+      <section
+        id="contact"
+        className="w-full py-10 bg-red-600 overflow-hidden text-center shadow-inner"
+      >
         <motion.h2
           className="text-white text-3xl sm:text-4xl font-bold font-rockwell tracking-wider mb-3"
           variants={sectionVariants}
@@ -344,14 +375,18 @@ const Home = () => {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ delay: 0.2 }}
         >
-          Should you have any questions, please feel free to reach us @{' '}
+          Should you have any questions, please feel free to reach us @{" "}
           <span className="font-bold">93450 00685 / 70100 78309</span>
         </motion.p>
       </section>
 
       {/* Get In Touch Form Section */}
       <section className="w-full py-12 bg-white overflow-hidden">
-        <form ref={form} onSubmit={sendEmail} className="max-w-xl mx-auto px-4 sm:px-6">
+        <form
+          ref={form}
+          onSubmit={sendEmail}
+          className="max-w-xl mx-auto px-4 sm:px-6"
+        >
           <motion.div
             className="mb-4"
             variants={itemVariants}
@@ -359,7 +394,10 @@ const Home = () => {
             whileInView="visible"
             viewport={{ once: true, amount: 0.2 }}
           >
-            <label htmlFor="user_first_name" className="block text-black text-base font-rockwell leading-tight mb-1">
+            <label
+              htmlFor="user_first_name"
+              className="block text-black text-base font-rockwell leading-tight mb-1"
+            >
               Your First Name
             </label>
             <input
@@ -378,7 +416,10 @@ const Home = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.1 }}
           >
-            <label htmlFor="user_last_name" className="block text-black text-base font-rockwell leading-tight mb-1">
+            <label
+              htmlFor="user_last_name"
+              className="block text-black text-base font-rockwell leading-tight mb-1"
+            >
               Your Last Name
             </label>
             <input
@@ -397,7 +438,10 @@ const Home = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.2 }}
           >
-            <label htmlFor="user_email" className="block text-black text-base font-rockwell leading-tight mb-1">
+            <label
+              htmlFor="user_email"
+              className="block text-black text-base font-rockwell leading-tight mb-1"
+            >
               Your Email<span className="text-red-600">*</span>
             </label>
             <input
@@ -417,7 +461,10 @@ const Home = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.3 }}
           >
-            <label htmlFor="user_phone" className="block text-black text-base font-rockwell leading-tight mb-1">
+            <label
+              htmlFor="user_phone"
+              className="block text-black text-base font-rockwell leading-tight mb-1"
+            >
               Your Phone No.
             </label>
             <input
@@ -436,7 +483,10 @@ const Home = () => {
             viewport={{ once: true, amount: 0.2 }}
             transition={{ delay: 0.4 }}
           >
-            <label htmlFor="user_programs" className="block text-black text-base font-rockwell leading-tight mb-1">
+            <label
+              htmlFor="user_programs"
+              className="block text-black text-base font-rockwell leading-tight mb-1"
+            >
               Programs of Interest
             </label>
             <input
@@ -468,7 +518,7 @@ const Home = () => {
       <section className="w-full h-[280px] md:h-[350px] lg:h-[400px] bg-stone-200 relative overflow-hidden flex items-center justify-center">
         {/* Updated Google Map iframe src to use the provided latitude and longitude */}
         <iframe
-          src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3941.687399346396!2d77.73707078198663!3d8.698684972781777!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sin!4v1719405021237"
+          src="https://maps.google.com/maps?q=8.698684972781777,77.73707078198663&t=&z=16&ie=UTF8&iwloc=&output=embed"
           width="100%"
           height="100%"
           style={{ border: 0 }}
@@ -483,22 +533,37 @@ const Home = () => {
           {/* Made the pin clickable to open Google Maps in a new tab */}
           <motion.div
             className="w-6 h-10 mb-2 cursor-pointer" // Added cursor-pointer
-            onClick={() => window.open('https://www.google.com/maps?q=8.698684972781777,77.73707078198663&z=16', '_blank')}
+            onClick={() =>
+              window.open(
+                "https://www.google.com/maps/search/?api=1&query=8.698684972781777,77.73707078198663",
+                "_blank"
+              )
+            }
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
-            <img src={locationPin} alt="Location Pin" className="w-full h-full object-contain"/>
+            <p
+              src={locationPin}
+              alt="Pin"
+              className="w-full h-full object-contain"
+            />
           </motion.div>
           <motion.div
-            className="bg-white rounded-lg shadow-xl p-3 text-center min-w-[180px]"
+            className="bg-white rounded-lg shadow-xl p-2 text-center min-w-[180px] mt-15"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.5 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <h3 className="text-black text-base font-bold font-roboto mb-1">True North Location</h3>
-            <p className="text-gray-700 text-xs">Based on provided coordinates.</p>
-            <p className="text-gray-700 text-xs">Tirunelveli, Tamil Nadu, India</p>
+            <h3 className="text-black text-base font-bold font-roboto mb-1">
+              True North Location
+            </h3>
+            <p className="text-gray-700 text-xs">
+              Based on provided coordinates.
+            </p>
+            <p className="text-gray-700 text-xs">
+              Tirunelveli, Tamil Nadu, India
+            </p>
           </motion.div>
         </div>
       </section>
@@ -511,42 +576,13 @@ const Home = () => {
         viewport={{ once: true, amount: 0.5 }}
         transition={{ duration: 0.6 }}
       >
-        <h2 className="text-orange-500 text-2xl sm:text-3xl font-bold font-rockwell tracking-wider mb-6">
-          STAY UPDATED
-        </h2>
-        <div className="max-w-xl mx-auto px-4">
-          <div className="mb-5 text-left">
-            <label htmlFor="newsletterEmail" className="block text-white text-sm font-rockwell leading-snug mb-1">
-              Enter your email here<span className="text-red-600">*</span>
-            </label>
-            <input
-              type="email"
-              id="newsletterEmail"
-              name="newsletterEmail"
-              className="w-full p-2 bg-black border border-white text-white placeholder-gray-400 focus:outline-none focus:border-red-600 transition-colors duration-200 text-sm"
-              placeholder="your.email@example.com"
-            />
-          </div>
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
-            <label className="flex items-center text-white text-xs font-normal font-rockwell leading-snug cursor-pointer">
-              <input
-                type="checkbox"
-                className="mr-2 w-4 h-4 border border-white bg-black accent-red-600 focus:ring-red-600 transition-colors duration-200"
-              />
-              Yes, subscribe me to your newsletter.
-            </label>
-            <motion.button
-              type="submit"
-              className="w-full sm:w-auto px-5 py-2 bg-red-600 text-black text-base font-medium font-roboto rounded-md shadow-md hover:bg-red-700 transition-colors duration-300"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              Subscribe Now
-            </motion.button>
-          </div>
-        </div>
-        <p className="text-white text-lg sm:text-xl font-bold font-rockwell mt-10 px-4 max-w-3xl mx-auto leading-relaxed">
-          📍 3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram, Tirunelveli.
+        <p className="text-white text-lg sm:text-xl font-bold font-rockwell px-4 max-w-3xl mx-auto leading-relaxed">
+          📍 3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram,
+          Tirunelveli.
+        </p>
+        {/* New Copyright Notice */}
+        <p className="text-gray-400 text-sm mt-4 font-roboto">
+          &copy; 2025 True North. All rights reserved.
         </p>
       </motion.footer>
     </div>
