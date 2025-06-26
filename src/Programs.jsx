@@ -36,44 +36,51 @@ export default function ProgramsPage() {
     <div className="min-h-screen bg-white font-sans overflow-hidden">
       {/* Header */}
       <motion.header
-        className="w-full h-24 bg-black bg-opacity-80 flex items-center justify-between px-4 sm:px-6 fixed top-0 z-50"
+        className="w-full h-25 bg-black bg-opacity-80 flex items-center justify-between px-3 sm:px-6 shadow-lg fixed top-0 left-0 z-50"
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ type: "spring", stiffness: 120, damping: 15 }}
       >
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-3">
           <motion.img
+            className="h-18 sm:h-24 w-auto object-contain rounded-b-4xl"
             src={logoImage}
             alt="Logo"
-            className="h-20 w-auto object-contain rounded-lg"
             whileHover={{ scale: 1.05 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           />
-          <h1 className="text-white text-2xl font-bold font-rockwell">
-            True North Academy
+          <h1 className="text-white text-xl sm:text-2xl lg:text-3xl font-bold font-rockwell tracking-wide">
+            True North Co.
           </h1>
         </div>
 
-        {/* Navigation Links (Desktop) */}
-        <nav className="hidden md:flex space-x-6">
-          <Link to="/" className="text-white hover:text-orange-500">
-            Home
-          </Link>
-          <Link to="/programs" className="text-orange-500 font-medium">
-            Programs
-          </Link>
-          <a href="/#staff" className="text-white hover:text-orange-500">
-            Staff
-          </a>
-          <a
-            href="/join-now"
-            className="text-white hover:text-orange-500"
-          >
-            Contact
-          </a>
+        <nav className="hidden md:flex space-x-5 lg:space-x-8">
+          {[
+            { name: "Home", path: "/" },
+            { name: "Programs", path: "/programs" },
+            { name: "Staff", path: "#staff" },
+            { name: "Contact", path: "#contact-section" },
+          ].map((item) => (
+            <motion.span key={item.name} whileHover={{ scale: 1.1 }}>
+              {item.path.startsWith("http") || item.path.startsWith("#") ? (
+                <a
+                  href={item.path}
+                  className="text-white hover:text-orange-500"
+                >
+                  {item.name}
+                </a>
+              ) : (
+                <Link
+                  to={item.path}
+                  className="text-white hover:text-orange-500"
+                >
+                  {item.name}
+                </Link>
+              )}
+            </motion.span>
+          ))}
         </nav>
 
-        {/* Mobile Menu Toggle Button (Hamburger Icon) */}
         <div className="md:hidden flex items-center">
           <button
             onClick={toggleMobileMenu}
@@ -88,24 +95,27 @@ export default function ProgramsPage() {
           </button>
         </div>
 
-        {/* Social Media Icons (Desktop) */}
-        <div className="hidden md:flex items-center space-x-3">
-          <a
+        <div className="hidden md:flex items-center space-x-2 sm:space-x-3">
+          <motion.a
             href="https://www.instagram.com/tnorthco/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-orange-600"
+            whileHover={{ scale: 1.15 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <FaInstagramSquare className="w-7 h-7" />
-          </a>
-          <a
+            <FaInstagramSquare className="w-7 h-7 sm:w-8 sm:h-8" />
+          </motion.a>
+          <motion.a
             href="https://wa.me/919345000685"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white hover:text-green-500"
+            whileHover={{ scale: 1.15 }}
+            transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <FaWhatsapp className="w-7 h-7" />
-          </a>
+            <FaWhatsapp className="w-7 h-7 sm:w-8 sm:h-8" />
+          </motion.a>
         </div>
       </motion.header>
 
@@ -141,11 +151,18 @@ export default function ProgramsPage() {
             onClick={() => setIsMobileMenuOpen(false)} // Close menu on click
           >
             {item.path.startsWith("/") ? ( // Use Link for internal paths
-              <Link to={item.path} className="text-white text-2xl font-bold hover:text-orange-500">
+              <Link
+                to={item.path}
+                className="text-white text-2xl font-bold hover:text-orange-500"
+              >
                 {item.name}
               </Link>
-            ) : ( // Use <a> for external or fragment paths
-              <a href={item.path} className="text-white text-2xl font-bold hover:text-orange-500">
+            ) : (
+              // Use <a> for external or fragment paths
+              <a
+                href={item.path}
+                className="text-white text-2xl font-bold hover:text-orange-500"
+              >
                 {item.name}
               </a>
             )}
