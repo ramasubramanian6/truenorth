@@ -92,7 +92,7 @@ const Home = () => {
   const googleMapsUrlForPin = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`; // Corrected Google Maps URL
 
   return (
-    <div className="min-h-screen bg-white font-sans overflow-hidden">
+    <div className="min-h-screen bg-white font-sans overflow-hidden md:mt-25">
      
       <motion.header
         className="w-full h-25 bg-black bg-opacity-80 flex items-center justify-between px-3 sm:px-6 shadow-lg fixed top-0 left-0 z-50"
@@ -297,10 +297,10 @@ const Home = () => {
       {/* About Our Classes Section */}
       <section
         id="program"
-        className="w-full py-12 bg-gray-700 overflow-hidden"
+        className="w-full py-12 bg-blue-50 overflow-hidden"
       >
         <motion.h2
-          className="text-center text-3xl sm:text-4xl font-bold font-rockwell underline text-white mb-10"
+          className="text-center text-3xl sm:text-4xl font-bold font-rockwell underline text-black mb-10"
           variants={sectionVariants}
           initial="hidden"
           whileInView="visible"
@@ -438,6 +438,10 @@ const Home = () => {
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-8 pb-8 max-w-6xl mx-auto">
           {[
+          {
+              image: baratha,
+              description: "Instructor of Bharatanatyam, Classical dance.",
+            },
             {
               image: karate,
               description: "Instructor of Karate, Kick boxing, Archery.",
@@ -450,10 +454,7 @@ const Home = () => {
               image: silambam,
               description: "Instructor of Silambam",
             },
-            {
-              image: baratha,
-              description: "Instructor of Bharatanatyam, Classical dance.",
-            },
+            
           ].map((staff) => (
             <motion.div
               key={staff.description}

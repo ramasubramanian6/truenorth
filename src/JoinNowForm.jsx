@@ -72,9 +72,7 @@ const JoinNowForm = () => {
           <Link to="/programs" className="text-white hover:text-orange-500">
             Programs
           </Link>
-          {/* If you want Staff/Contact in desktop nav, add them back here */}
-          {/* <a href="/#staff" className="text-white hover:text-orange-500">Staff</a> */}
-          {/* <a href="/joinnow" className="text-white hover:text-orange-500">Contact</a> */}
+          
         </nav>
 
         <div className="md:hidden flex items-center">
