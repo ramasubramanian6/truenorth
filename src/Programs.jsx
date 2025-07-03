@@ -58,7 +58,6 @@ export default function ProgramsPage() {
           {[
             { name: "Home", path: "/" },
             { name: "Programs", path: "/programs" },
-            { name: "Staff", path: "/#staff" },
             { name: "Contact", path: "/join-now" }, // Reverted to /join-now
           ].map((item) => (
             <motion.span key={item.name} whileHover={{ scale: 1.1 }}>
