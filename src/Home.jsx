@@ -120,7 +120,7 @@ const Home = () => {
             { name: "Home", path: "/" },
             { name: "Programs", path: "/programs" },
             { name: "Staff", path: "#staff" },
-            { name: "Contact", path: "#contact-section" },
+            { name: "Contact", path: "/join-now" },
           ].map((item) => (
             <motion.span key={item.name} whileHover={{ scale: 1.1 }}>
               {item.path.startsWith("http") || item.path.startsWith("#") ? (
