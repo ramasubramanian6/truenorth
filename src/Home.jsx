@@ -34,6 +34,7 @@ import silambamImage from "./assets/TRUENORTH-silambam.jpeg";
 import yogaImage from "./assets/TRUENORTH-yoga.jpeg";
 import TrueNorthMap from "./TrueNorthMap";
 
+import Header from "./Header";
 // --- Hero Background Image ---
 const heroBgImage = { home_page };
 
@@ -93,161 +94,7 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-white font-sans overflow-hidden md:mt-25">
-     
-      <motion.header
-        className="w-full h-25 bg-black bg-opacity-80 flex items-center justify-between px-3 sm:px-6 shadow-lg fixed top-0 left-0 z-50"
-        initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        transition={{ type: "spring", stiffness: 120, damping: 15 }}
-      >
-       
-        <div className="flex items-center space-x-3">
-          <motion.img
-            className="h-18 sm:h-24 w-auto object-contain rounded-b-4xl"
-            src={logoImage}
-            alt="Logo"
-            whileHover={{ scale: 1.05 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          />
-          <h1 className="text-white text-xl sm:text-2xl lg:text-3xl font-bold font-rockwell tracking-wide">
-            True North Co.
-          </h1>
-        </div>
-
-       
-        <nav className="hidden md:flex space-x-5 lg:space-x-8">
-          {[
-            { name: "Home", path: "/" },
-            { name: "Programs", path: "/programs" },
-            { name: "Staff", path: "#staff" },
-            { name: "Contact", path: "/join-now" },
-          ].map((item) => (
-            <motion.span key={item.name} whileHover={{ scale: 1.1 }}>
-              {item.path.startsWith("http") || item.path.startsWith("#") ? (
-                <a
-                  href={item.path}
-                  className="text-white hover:text-orange-500"
-                >
-                  {item.name}
-                </a>
-              ) : (
-                <Link
-                  to={item.path}
-                  className="text-white hover:text-orange-500"
-                >
-                  {item.name}
-                </Link>
-              )}
-            </motion.span>
-          ))}
-        </nav>
-
-        
-        <div className="md:hidden flex items-center">
-          <button
-            onClick={toggleMobileMenu}
-            className="text-white focus:outline-none"
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? (
-              <FaTimes className="w-8 h-8" />
-            ) : (
-              <FaBars className="w-8 h-8" />
-            )}
-          </button>
-        </div>
-
-       
-        <div className="hidden md:flex items-center space-x-2 sm:space-x-3">
-          <motion.a
-            href="https://www.instagram.com/tnorthco/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-orange-600"
-            whileHover={{ scale: 1.15 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <FaInstagramSquare className="w-7 h-7 sm:w-8 sm:h-8" />
-          </motion.a>
-          <motion.a
-            href="https://wa.me/919345000685"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-white hover:text-green-500"
-            whileHover={{ scale: 1.15 }}
-            transition={{ type: "spring", stiffness: 400, damping: 10 }}
-          >
-            <FaWhatsapp className="w-7 h-7 sm:w-8 sm:h-8" />
-          </motion.a>
-        </div>
-      </motion.header>
-
-     
-      <motion.nav
-        initial={false}
-        animate={isMobileMenuOpen ? "open" : "closed"}
-        variants={{
-          open: { opacity: 1, x: 0 },
-          closed: { opacity: 0, x: "100%" },
-        }}
-        transition={{ type: "spring", stiffness: 120, damping: 20 }}
-        className={`fixed top-0 right-0 h-full w-1/3 bg-black bg-opacity-95 p-6 transform ${
-          isMobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        } md:hidden z-40 flex flex-col justify-center items-center space-y-6`} 
-      >
-        <button
-          onClick={toggleMobileMenu}
-          className="absolute top-6 right-6 text-white focus:outline-none"
-          aria-label="Close mobile menu"
-        >
-          <FaTimes className="w-8 h-8" /> 
-        </button>
-        {[
-          { name: "Home", path: "/" },
-          { name: "Programs", path: "/programs" },
-          { name: "Staff", path: "#staff" },
-          { name: "Contact", path: "#contact-section" },
-        ].map((item) => (
-          <motion.span
-            key={item.name}
-            whileHover={{ scale: 1.1 }}
-            onClick={() => setIsMobileMenuOpen(false)}
-          >
-            {item.path.startsWith("http") || item.path.startsWith("#") ? (
-              <a href={item.path} className="text-white text-2xl font-bold hover:text-orange-500">
-                {item.name}
-              </a>
-            ) : (
-              <Link to={item.path} className="text-white text-2xl font-bold hover:text-orange-500"> 
-                {item.name}
-              </Link>
-            )}
-          </motion.span>
-        ))}
-        <div className="flex items-center space-x-6 mt-8">
-            <motion.a
-                href="https://www.instagram.com/tnorthco/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-orange-600"
-                whileHover={{ scale: 1.15 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-                <FaInstagramSquare className="w-8 h-8" /> 
-            </motion.a>
-            <motion.a
-                href="https://wa.me/919345000685"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white hover:text-green-500"
-                whileHover={{ scale: 1.15 }}
-                transition={{ type: "spring", stiffness: 400, damping: 10 }}
-            >
-                <FaWhatsapp className="w-8 h-8" /> 
-            </motion.a>
-        </div>
-      </motion.nav>
-
+      <Header />
       {/* Hero Section */}
       <section
         id="home"
@@ -293,189 +140,256 @@ const Home = () => {
           </motion.button>
         </motion.div>
       </section>
-
-      {/* About Our Classes Section */}
       <section
         id="program"
-        className="w-full py-12 bg-blue-50 overflow-hidden"
+        className="w-full py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-900 font-sans"
       >
-        <motion.h2
-          className="text-center text-3xl sm:text-4xl font-bold font-rockwell underline text-black mb-10"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          About Our Classes
-        </motion.h2>
-
-        {/* Class Listings */}
-        {[
-          {
-            name: "Karate",
-            description:
-              "Karate is a traditional Japanese martial art that emphasizes discipline, focus, and powerful striking techniques using punches, kicks, knee strikes, and open-hand techniques.",
-            image: karateImage,
-            reverse: false,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
-          },
-          {
-            name: "Kick Boxing",
-            description:
-              "Kickboxing is a dynamic combat sport that blends the powerful punches of boxing with the agile kicks of martial arts.",
-            image: kickBoxingImage,
-            reverse: true,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
-          },
-          {
-            name: "Archery",
-            description:
-              "Archery is the art of precision and patience, where focus meets grace in every shot. With every arrow released, archery teaches control, discipline, and the power of a calm mind.",
-            image: archeryImage,
-            reverse: false,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
-          },
-          {
-            name: "Kobudo",
-            description:
-              "Kobudo is the ancient Okinawan martial art focusing on the use of traditional weapons like the bo, nunchaku, kama, and sai.",
-            image: kobudoImage,
-            reverse: true,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
-          },
-          {
-            name: "Drawing",
-            description:
-              "Drawing is the art of seeing with your hands, where imagination flows through every line and shape.",
-            image: drawingImage,
-            reverse: false,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
-          },
-          {
-            name: "Silambam",
-            description:
-              "Silambam is an ancient and dynamic martial art from Tamil Nadu, India, characterized by its fluid movements and weapon-based combat, primarily using a bamboo staff.",
-            image: silambamImage,
-            reverse: true,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
-          },
-          {
-            name: "Yoga",
-            description:
-              "Yoga is a holistic practice originating in ancient India, combining physical postures, breathing techniques, and meditation to foster harmony between mind, body, and spirit.",
-            image: yogaImage,
-            reverse: false,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
-          },
-          {
-            name: "Abacus",
-            description:
-              "The abacus is an ancient calculating tool that uses beads on rods to perform arithmetic operations, predating modern electronic calculators and still used today for teaching fundamental number concepts.",
-            image: abacusImage,
-            reverse: true,
-            titleClass: "text-2xl sm:text-3xl lg:text-4xl",
-            imageSizeClass: "w-48 h-48 sm:w-64 sm:h-64",
-          },
-          {
-            name: "Bharatanatyam",
-            description:
-              "Bharatanatyam is an ancient and expressive Indian classical dance form from Tamil Nadu.",
-            image: bharatanatyamImage,
-            reverse: false,
-            titleClass: "text-xl sm:text-2xl lg:text-3xl",
-            imageSizeClass: "w-56 h-56 sm:w-72 sm:h-72",
-          },
-        ].map((classItem) => (
-          <motion.div
-            key={classItem.name}
-            className={`flex flex-col items-center justify-center gap-5 md:gap-10 mb-14 px-3 sm:px-6 ${
-              classItem.reverse ? "md:flex-row-reverse" : "md:flex-row"
-            }`}
-            variants={itemVariants}
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Heading */}
+          <motion.h2
+            className="text-center text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight text-black"
+            variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
+            viewport={{ once: true, amount: 0.3 }}
           >
-            <motion.img
-              className={`${classItem.imageSizeClass} rounded-md object-cover flex-shrink-0`}
-              src={classItem.image}
-              alt={classItem.name}
-              whileHover={{ scale: 1.03 }}
-              transition={{ duration: 0.3 }}
-            />
-            <motion.div className="w-full max-w-2xl bg-red-600 rounded-md p-5 shadow-lg">
-              <h3
-                className={`text-white font-bold font-rockwell mb-2 text-center md:text-left ${classItem.titleClass}`}
+            About Our Classes
+          </motion.h2>
+          <p className="text-center text-lg sm:text-xl text-gray-600 max-w-3xl mx-auto mb-12">
+            Discover enriching classes that build character, focus, fitness, and
+            creativity in students of all backgrounds.
+          </p>
+
+          {/* Grid layout */}
+          <div className="grid gap-10 md:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                name: "Karate",
+                image: karateImage,
+                description:
+                  "Karate blends tradition with power, teaching focus, discipline, and self-defense through precise movements and mental control.",
+                benefits: [
+                  "Builds confidence & focus",
+                  "Improves reflexes & strength",
+                  "Instills discipline",
+                ],
+              },
+              {
+                name: "Kick Boxing",
+                image: kickBoxingImage,
+                description:
+                  "A high-energy sport that combines boxing with martial arts kicks—ideal for building stamina, strength, and resilience.",
+                benefits: [
+                  "Cardio-intensive workouts",
+                  "Boosts agility & speed",
+                  "Sharpens defense skills",
+                ],
+              },
+              {
+                name: "Archery",
+                image: archeryImage,
+                description:
+                  "Channel calmness and precision in every arrow. Archery strengthens focus, patience, and mind–body alignment.",
+                benefits: [
+                  "Enhances concentration",
+                  "Improves posture",
+                  "Encourages mental discipline",
+                ],
+              },
+              {
+                name: "Kobudo",
+                image: kobudoImage,
+                description:
+                  "Master traditional weapons like bo, nunchaku, and sai while preserving ancient Okinawan martial traditions.",
+                benefits: [
+                  "Develops coordination",
+                  "Explores martial heritage",
+                  "Boosts hand–eye control",
+                ],
+              },
+              {
+                name: "Drawing",
+                image: drawingImage,
+                description:
+                  "From sketches to storytelling through lines, drawing opens creative pathways and hones visual expression.",
+                benefits: [
+                  "Inspires creativity",
+                  "Sharpens observation",
+                  "Improves fine motor skills",
+                ],
+              },
+              {
+                name: "Silambam",
+                image: silambamImage,
+                description:
+                  "An elegant weapon-based martial art from Tamil Nadu, Silambam promotes agility, endurance, and tradition.",
+                benefits: [
+                  "Boosts body control",
+                  "Teaches ancient technique",
+                  "Improves balance",
+                ],
+              },
+              {
+                name: "Yoga",
+                image: yogaImage,
+                description:
+                  "A path to physical and mental well-being, yoga combines breath, posture, and inner reflection.",
+                benefits: [
+                  "Reduces stress",
+                  "Improves flexibility",
+                  "Promotes mindfulness",
+                ],
+              },
+              {
+                name: "Abacus",
+                image: abacusImage,
+                description:
+                  "Train young minds with powerful mental math skills through the ancient bead-based calculation method.",
+                benefits: [
+                  "Boosts arithmetic skills",
+                  "Improves memory",
+                  "Enhances focus",
+                ],
+              },
+              {
+                name: "Bharatanatyam",
+                image: bharatanatyamImage,
+                description:
+                  "Grace, rhythm, and storytelling come alive in this revered classical Indian dance form from Tamil Nadu.",
+                benefits: [
+                  "Builds body rhythm",
+                  "Deepens cultural roots",
+                  "Improves expression & poise",
+                ],
+              },
+            ].map((cls, index) => (
+              <motion.div
+                key={cls.name}
+                className="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col"
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ delay: index * 0.05 }}
               >
-                {classItem.name}
-              </h3>
-              <p className="text-white text-sm sm:text-base lg:text-lg font-normal font-rockwell leading-relaxed text-center md:text-left">
-                {classItem.description}
-              </p>
-            </motion.div>
-          </motion.div>
-        ))}
+                <img
+                  src={cls.image}
+                  alt={cls.name}
+                  className="h-56 w-full object-cover"
+                />
+                <div className="p-6 flex flex-col justify-between flex-1">
+                  <div>
+                    <h3 className="text-xl font-bold text-red-600 mb-2">
+                      {cls.name}
+                    </h3>
+                    <p className="text-sm text-gray-700 mb-3">
+                      {cls.description}
+                    </p>
+                    <ul className="list-disc ml-5 space-y-1 text-sm text-gray-800">
+                      {cls.benefits.map((b, i) => (
+                        <li key={i}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
       </section>
+      <section
+        id="staff"
+        className="w-full py-20 bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#2c2c2c] text-white font-sans"
+      >
+        <div className="max-w-7xl mx-auto px-6">
+          {/* Heading */}
+          <motion.h2
+            initial={{ opacity: 0, y: -40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="text-4xl sm:text-5xl text-center font-bold tracking-tight mb-6 text-white"
+          >
+            Meet Our Passionate Instructors
+          </motion.h2>
 
-      {/* Meet Our Staff Section */}
-      <section id="staff" className="w-full py-12 bg-black overflow-hidden">
-        <motion.h2
-          className="text-center text-3xl sm:text-4xl font-bold font-rockwell tracking-wider text-white mb-10"
-          variants={sectionVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-        >
-          MEET OUR STAFF
-        </motion.h2>
+          <p className="text-center text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto mb-12">
+            Our dedicated instructors are more than just teachers—they’re
+            mentors who guide children with patience, creativity, and passion.
+            Each brings years of experience and heartfelt commitment to shaping
+            your child’s growth.
+          </p>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 px-4 sm:px-8 pb-8 max-w-6xl mx-auto">
-          {[
-          {
-              image: baratha,
-              description: "Instructor of Bharatanatyam, Classical dance.",
-            },
-            {
-              image: karate,
-              description: "Instructor of Karate, Kick boxing, Archery.",
-            },
-            {
-              image: draw,
-              description: "Instructor of Drawing, Sculptures.",
-            },
-            {
-              image: silambam,
-              description: "Instructor of Silambam",
-            },
-            
-          ].map((staff) => (
-            <motion.div
-              key={staff.description}
-              className="flex flex-col items-center shadow-lg rounded-lg overflow-hidden bg-white"
-              variants={itemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.2 }}
+          {/* Staff Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
+            {[
+              {
+                image: baratha,
+                name: "Dr. Anjali Devi",
+                title: "Lead Instructor, Bharatanatyam",
+                shortDescription:
+                  "Ph.D. in classical dance with over 20 years of performance and teaching. Her elegant, expressive style inspires discipline and grace in every student.",
+              },
+              {
+                image: karate,
+                name: "Sensei Kumar",
+                title: "Head Instructor, Martial Arts & Archery",
+                shortDescription:
+                  "A black belt and certified archery coach who builds confidence and inner strength through structured and respectful training methods.",
+              },
+              {
+                image: draw,
+                name: "Ms. Priya Sharma",
+                title: "Artistic Director, Drawing & Sculpture",
+                shortDescription:
+                  "A calm, creative mentor who helps children express themselves through colors, textures, and imagination. Her classes foster confidence and freedom.",
+              },
+              {
+                image: silambam,
+                name: "Master Rajan",
+                title: "Chief Instructor, Silambam",
+                shortDescription:
+                  "Passionate about reviving traditional Indian martial arts. His training instills agility, focus, and respect in a supportive learning environment.",
+              },
+            ].map((staff) => (
+              <motion.div
+                key={staff.name}
+                whileHover={{ scale: 1.03 }}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+                className="bg-white text-gray-900 rounded-2xl shadow-md hover:shadow-xl overflow-hidden transition-transform duration-300"
+              >
+                <img
+                  src={staff.image}
+                  alt={`${staff.name} - ${staff.title}`}
+                  className="w-full h-64 object-cover border-b-4 border-red-600"
+                  loading="lazy"
+                />
+                <div className="p-5">
+                  <h3 className="text-xl font-bold mb-1">{staff.name}</h3>
+                  <p className="text-red-700 text-sm font-semibold mb-2">
+                    {staff.title}
+                  </p>
+                  <p className="text-sm text-gray-700">
+                    {staff.shortDescription}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* CTA Button */}
+          <div className="text-center mt-16">
+            <motion.a
+              href="/join-now"
+              whileHover={{ scale: 1.05 }}
+              animate={{ y: [0, -5, 0] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+              className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-3 px-8 rounded-full shadow-lg transition-transform"
             >
-              <img
-                className="w-full h-80 object-cover  border-b-2 border-black"
-                src={staff.image}
-                alt={staff.description}
-              />
-              <div className="w-full bg-red-600 border-t-2 border-black p-3 text-center">
-                <p className="text-white text-xl sm:text-base font-bold font-rockwell leading-relaxed">
-                  {staff.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
+              Join Now — Give Your Child the Best Start
+            </motion.a>
+          </div>
         </div>
       </section>
 
@@ -522,7 +436,7 @@ const Home = () => {
                 htmlFor="user_first_name"
                 className="block text-black text-base font-rockwell leading-tight mb-1"
               >
-                Your Name
+                Name
               </label>
               <input
                 type="text"
@@ -544,7 +458,7 @@ const Home = () => {
                 htmlFor="user_email"
                 className="block text-black text-base font-rockwell leading-tight mb-1"
               >
-                Your Email<span className="text-red-600">*</span>
+                Email<span className="text-red-600">*</span>
               </label>
               <input
                 type="email"
@@ -567,7 +481,7 @@ const Home = () => {
                 htmlFor="user_phone"
                 className="block text-black text-base font-rockwell leading-tight mb-1"
               >
-                Your Phone No.
+                Phone No.
               </label>
               <input
                 type="tel"
@@ -623,7 +537,7 @@ const Home = () => {
               viewport={{ once: true, amount: 0.3 }}
               transition={{ delay: 0.5 }}
             >
-              Get In Touch
+              Submit
             </motion.button>
           </form>
         </section>
