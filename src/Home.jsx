@@ -324,32 +324,32 @@ const Home = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10">
             {[
               {
-                image: baratha,
-                name: "Dr. Anjali Devi",
-                title: "Lead Instructor, Bharatanatyam",
+                image: silambam,
+                name: "Muthu Sudar",
+                title: "Silambam Grandmaster",
                 shortDescription:
-                  "Ph.D. in classical dance with over 20 years of performance and teaching. Her elegant, expressive style inspires discipline and grace in every student.",
-              },
-              {
-                image: karate,
-                name: "Sensei Kumar",
-                title: "Head Instructor, Martial Arts & Archery",
-                shortDescription:
-                  "A black belt and certified archery coach who builds confidence and inner strength through structured and respectful training methods.",
+                  "With over 18 years of experience, Master Muthu Sudar has guided thousands of young learners across 16 schools. His patient, structured approach ensures every child grows strong in body and mind.",
               },
               {
                 image: draw,
-                name: "Ms. Priya Sharma",
-                title: "Artistic Director, Drawing & Sculpture",
+                name: "Dr. K. Nambi Raja",
+                title: "Professor of Drawing & Arts",
                 shortDescription:
-                  "A calm, creative mentor who helps children express themselves through colors, textures, and imagination. Her classes foster confidence and freedom.",
+                  "An award-winning artist and former Assistant Professor, Dr. Raja brings 18 years of gentle, encouraging instruction. Kids love his interactive lessons in sketching and color theory.",
               },
               {
-                image: silambam,
-                name: "Master Rajan",
-                title: "Chief Instructor, Silambam",
+                image: karate,
+                name: "Sensei Vimal",
+                title: "Karate & Kickboxing Coach",
                 shortDescription:
-                  "Passionate about reviving traditional Indian martial arts. His training instills agility, focus, and respect in a supportive learning environment.",
+                  "Over 30 years of martial-arts expertise, Sensei Vimal creates a safe, disciplined environment where every child learns self-defense and self-respect.",
+              },
+              {
+                image: baratha,
+                name: "M. Marimuthu",
+                title: "Bharatanatyam Classical Instructor",
+                shortDescription:
+                  "Guru Marimuthu has taught Bharatanatyam for 20+ years, guiding students in expressive dance and storytelling to build confidence on and off the stage.",
               },
             ].map((staff) => (
               <motion.div
@@ -382,7 +382,6 @@ const Home = () => {
 
           {/* CTA Buttons */}
           <div className="text-center mt-16 space-y-6">
-
             {/* Learn More About Staff Button */}
             <motion.button
               onClick={() => navigate("/staff")}
