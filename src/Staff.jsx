@@ -84,7 +84,7 @@ export default function Staff() {
 
       <section
         id="instructors"
-        className="min-h-screen bg-gradient-to-br from-orange-50 to-red-100 py-20 px-4 mt-10"
+        className="min-h-screen bg-gradient-to-br from-orange-50 to-red-100 py-20 px-4 mt-16"
       >
         <div className="max-w-6xl mx-auto">
           <motion.h1
