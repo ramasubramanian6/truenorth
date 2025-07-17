@@ -8,7 +8,11 @@ import { Link } from "react-router-dom";
 
 // Updated program schedule
 const programs = [
-  { id: 1, name: "Drawing & Fine Arts", schedule: "Tuesday & Thursday, 6 PM - 7 PM" },
+  {
+    id: 1,
+    name: "Drawing & Fine Arts",
+    schedule: "Tuesday & Thursday, 6 PM - 7 PM",
+  },
   { id: 2, name: "Karate", schedule: "Tuesday & Thursday, 7 PM - 8 PM" },
   { id: 3, name: "Archery", schedule: "Tuesday & Thursday, 8 PM - 9 PM" },
 ];
@@ -168,74 +172,6 @@ export default function ProgramsPage() {
             </motion.div>
           </div>
         </motion.section>
-
-        <motion.footer
-          className="w-full py-10 bg-black text-white"
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
-          transition={{ duration: 0.6 }}
-        >
-          <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* About */}
-            <div>
-              <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
-                True North Academy
-              </h3>
-              <p className="text-gray-300 text-sm font-roboto leading-relaxed">
-                Dedicated to fostering discipline, focus, and creativity through
-                traditional and modern classes like Karate, Silambam, Yoga,
-                Drawing, and more.
-              </p>
-              <p className="text-gray-400 text-xs mt-2 font-roboto">
-                "Master Your Craft, Unleash Your Potential"
-              </p>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
-                Contact & Visit Us
-              </h3>
-              <p className="text-gray-300 text-sm">📍 3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram, Tirunelveli, TN, India.</p>
-              <p className="text-gray-300 text-sm mt-2">📞 +91 93450 00685</p>
-              <p className="text-gray-300 text-sm mt-1">📞 +91 70100 78309</p>
-              <p className="text-gray-300 text-sm mt-1">✉️ info@truenorthacademy.com</p>
-              <p className="text-gray-400 text-xs mt-2">Business Hours: Mon-Sat: 9:00 AM - 7:00 PM</p>
-            </div>
-
-            {/* Links */}
-            <div>
-              <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
-                Quick Links
-              </h3>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-gray-300 hover:text-orange-500 text-sm">Home</Link></li>
-                <li><Link to="/programs" className="text-gray-300 hover:text-orange-500 text-sm">Our Programs</Link></li>
-                <li><a href="/#staff" className="text-gray-300 hover:text-orange-500 text-sm">Meet Our Staff</a></li>
-                <li><Link to="/join-now" className="text-gray-300 hover:text-orange-500 text-sm">Contact Us</Link></li>
-              </ul>
-
-              <h3 className="text-xl font-bold font-rockwell mt-6 mb-4 text-orange-500">
-                Follow Us
-              </h3>
-              <div className="flex space-x-4">
-                <a href="https://www.instagram.com/tnorthco/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-orange-600">
-                  <FaInstagramSquare className="w-8 h-8" />
-                </a>
-                <a href="https://wa.me/919345000685" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-green-600">
-                  <FaWhatsapp className="w-8 h-8" />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-3 pt-2 border-t border-gray-700 text-center">
-            <p className="text-gray-400 text-sm font-roboto">
-              © {new Date().getFullYear()} True North. All rights reserved.
-            </p>
-          </div>
-        </motion.footer>
       </div>
     </>
   );

@@ -37,10 +37,12 @@ import TrueNorthMap from "./TrueNorthMap";
 import Header from "./Header";
 // --- Hero Background Image ---
 const heroBgImage = { home_page };
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
   const form = useRef();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   const sendEmail = (e) => {
     e.preventDefault();
@@ -378,17 +380,19 @@ const Home = () => {
             ))}
           </div>
 
-          {/* CTA Button */}
-          <div className="text-center mt-16">
-            <motion.a
-              href="/join-now"
+          {/* CTA Buttons */}
+          <div className="text-center mt-16 space-y-6">
+
+            {/* Learn More About Staff Button */}
+            <motion.button
+              onClick={() => navigate("/staff")}
               whileHover={{ scale: 1.05 }}
               animate={{ y: [0, -5, 0] }}
               transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-              className="inline-block bg-green-600 hover:bg-green-700 text-white font-bold text-lg py-3 px-8 rounded-full shadow-lg transition-transform"
+              className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-bold text-lg py-3 px-8 rounded-full shadow-lg transition-transform"
             >
-              Join Now — Give Your Child the Best Start
-            </motion.a>
+              Learn More About Our Staff
+            </motion.button>
           </div>
         </div>
       </section>
@@ -544,128 +548,6 @@ const Home = () => {
       </div>
 
       <TrueNorthMap />
-
-      {/* Copyright Footer */}
-      <motion.footer
-        className="w-full py-10 bg-black text-white"
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true, amount: 0.5 }}
-        transition={{ duration: 0.6 }}
-      >
-        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Column 1: About True North */}
-          <div>
-            <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
-              True North Academy
-            </h3>
-            <p className="text-gray-300 text-sm font-roboto leading-relaxed">
-              Dedicated to fostering discipline, focus, and creativity through
-              traditional and modern classes like Karate, Silambam, Yoga,
-              Drawing, and more. We empower individuals to master their craft
-              and unleash their full potential.
-            </p>
-            <p className="text-gray-400 text-xs mt-2 font-roboto">
-              "Master Your Craft, Unleash Your Potential"
-            </p>
-          </div>
-
-          {/* Column 2: Contact & Location */}
-          <div>
-            <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
-              Contact & Visit Us
-            </h3>
-            <p className="text-gray-300 text-sm font-roboto">
-              📍 3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram,
-              Tirunelveli, Tamil Nadu, India.
-            </p>
-            <p className="text-gray-300 text-sm mt-2 font-roboto">
-              📞 +91 93450 00685
-            </p>
-            <p className="text-gray-300 text-sm mt-1 font-roboto">
-              📞 +91 70100 78309
-            </p>
-            <p className="text-gray-300 text-sm mt-1 font-roboto">
-              ✉️ info@truenorthacademy.com
-            </p>
-            <p className="text-gray-400 text-xs mt-2 font-roboto">
-              Business Hours: Mon-Sat: 9:00 AM - 7:00 PM
-            </p>
-          </div>
-
-          {/* Column 3: Quick Links & Socials */}
-          <div>
-            <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
-              Quick Links
-            </h3>
-            <ul className="space-y-2">
-              <li>
-                <a
-                  href="#home"
-                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
-                >
-                  Home
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#program"
-                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Our Programs
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#staff"
-                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Meet Our Staff
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#contact-section"
-                  className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  Contact Us
-                </a>
-              </li>
-            </ul>
-
-            <h3 className="text-xl font-bold font-rockwell mt-6 mb-4 text-orange-500">
-              Follow Us
-            </h3>
-            <div className="flex space-x-4">
-              <a
-                href="https://www.instagram.com/tnorthco/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-orange-600"
-              >
-                <FaInstagramSquare className="w-8 h-8" />
-              </a>
-              <a
-                href="https://wa.me/919345000685"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-gray-300 hover:text-green-600"
-              >
-                <FaWhatsapp className="w-8 h-8" />
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-3 pt-2 border-t border-gray-700 text-center">
-          <p className="text-gray-400 text-sm font-roboto">
-            © {new Date().getFullYear()} True North. All rights reserved.
-          </p>
-        </div>
-      </motion.footer>
     </div>
   );
 };
