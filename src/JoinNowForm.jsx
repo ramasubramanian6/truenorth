@@ -105,7 +105,7 @@ const JoinNowForm = () => {
         </div>
       </motion.nav>
 
-      <main className="min-h-screen pt-24 pb-12 bg-gradient-to-br from-blue-50 to-indigo-100 font-sans">
+      <main className="min-h-screen pt-24 pb-12 bg-gradient-to-br from-blue-50 to-indigo-100 font-rockwell">
         <section className="w-full py-10 px-4 sm:px-6 bg-gradient-to-r from-red-700 to-orange-500 text-center shadow-lg rounded-b-3xl">
           <motion.h2
             className="text-white text-4xl sm:text-5xl font-extrabold font-rockwell tracking-wider mb-3 drop-shadow-md"

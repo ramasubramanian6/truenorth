@@ -99,7 +99,7 @@ export default function ProgramsPage() {
         </div>
       </motion.nav>
 
-      <div className="min-h-screen bg-white font-sans overflow-hidden">
+      <div className="min-h-screen bg-white font-rockwell overflow-hidden">
         <section className="pt-24">
           <motion.img
             src={heroImg}

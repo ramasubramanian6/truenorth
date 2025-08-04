@@ -95,7 +95,7 @@ const Home = () => {
   const googleMapsUrlForPin = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`; // Corrected Google Maps URL
 
   return (
-    <div className="min-h-screen bg-white font-sans overflow-hidden md:mt-25">
+    <div className="min-h-screen bg-white font-rockwell overflow-hidden md:mt-25">
       <Header />
       {/* Hero Section */}
       <section
@@ -144,7 +144,7 @@ const Home = () => {
       </section>
       <section
         id="program"
-        className="w-full py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-900 font-sans"
+        className="w-full py-20 bg-gradient-to-br from-blue-50 via-white to-blue-100 text-gray-900 font-rockwell"
       >
         <div className="max-w-7xl mx-auto px-6">
           {/* Heading */}
@@ -300,7 +300,7 @@ const Home = () => {
       </section>
       <section
         id="staff"
-        className="w-full py-20 bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#2c2c2c] text-white font-sans"
+        className="w-full py-20 bg-gradient-to-br from-[#0f0f0f] via-[#1a1a1a] to-[#2c2c2c] text-white font-rockwell"
       >
         <div className="max-w-7xl mx-auto px-6">
           {/* Heading */}

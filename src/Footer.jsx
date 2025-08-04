@@ -18,12 +18,12 @@ export default function Footer() {
           <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
             True North Academy
           </h3>
-          <p className="text-gray-300 text-sm font-roboto leading-relaxed">
+          <p className="text-gray-300 text-sm font-rockwell leading-relaxed">
             Where tradition meets excellence. Our academy offers comprehensive training in martial arts,
             cultural arts, and academic enrichment. Join us in nurturing discipline, creativity, and
             personal growth through expert guidance and proven methodologies.
           </p>
-          <p className="text-gray-400 text-xs mt-2 font-roboto">
+          <p className="text-gray-400 text-xs mt-2 font-rockwell">
             "Transforming Lives Through Excellence in Education & Training"
           </p>
         </div>
@@ -33,17 +33,17 @@ export default function Footer() {
           <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
             Contact & Visit Us
           </h3>
-          <p className="text-gray-300 text-sm font-roboto">
+          <p className="text-gray-300 text-sm font-rockwell">
             📍 3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram,
             Tirunelveli, Tamil Nadu, India.
           </p>
-          <p className="text-gray-300 text-sm mt-2 font-roboto">
+          <p className="text-gray-300 text-sm mt-2 font-rockwell">
             📞 Primary: +91 93450 00685
           </p>
-          <p className="text-gray-300 text-sm mt-1 font-roboto">
+          <p className="text-gray-300 text-sm mt-1 font-rockwell">
             📞 Secondary: +91 70100 78309
           </p>
-          <p className="text-gray-400 text-xs mt-2 font-roboto">
+          <p className="text-gray-400 text-xs mt-2 font-rockwell">
             Hours: Monday - Saturday
             <br />
             Morning: 6:00 AM - 8:00 AM
@@ -61,7 +61,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
               >
                 Home
               </Link>
@@ -69,7 +69,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/programs"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
               >
                 Our Programs
               </Link>
@@ -77,7 +77,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/staff"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
               >
                 Meet Our Staff
               </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/testimonials"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
               >
                 Testimonials
               </Link>
@@ -93,7 +93,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/join-now"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-roboto"
+                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
               >
                 Join Now
               </Link>
@@ -127,7 +127,7 @@ export default function Footer() {
       </div>
 
       <div className="mt-8 pt-4 border-t border-gray-800 text-center">
-        <p className="text-gray-400 text-sm font-roboto">
+        <p className="text-gray-400 text-sm font-rockwell">
           © {new Date().getFullYear()} True North Academy. All rights reserved.
         </p>
       </div>

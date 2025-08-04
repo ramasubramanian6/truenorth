@@ -37,7 +37,7 @@ const TrueNorthMap = () => {
           viewport={{ once: true, amount: 0.5 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <h3 className="text-black text-base font-bold font-roboto mb-1">
+          <h3 className="text-black text-base font-bold font-rockwell mb-1">
             True North Academy
           </h3>
           <p className="text-gray-700 text-xs leading-snug">
