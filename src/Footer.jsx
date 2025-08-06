@@ -15,35 +15,35 @@ export default function Footer() {
       <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-3 gap-8">
         {/* Column 1: About True North */}
         <div>
-          <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
+          <h3 className="footer-title">
             True North Academy
           </h3>
-          <p className="text-gray-300 text-sm font-rockwell leading-relaxed">
+          <p className="footer-description">
             Where tradition meets excellence. Our academy offers comprehensive training in martial arts,
             cultural arts, and academic enrichment. Join us in nurturing discipline, creativity, and
             personal growth through expert guidance and proven methodologies.
           </p>
-          <p className="text-gray-400 text-xs mt-2 font-rockwell">
+          <p className="footer-quote mt-2">
             "Transforming Lives Through Excellence in Education & Training"
           </p>
         </div>
 
         {/* Column 2: Contact & Location */}
         <div>
-          <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
+          <h3 className="footer-title">
             Contact & Visit Us
           </h3>
-          <p className="text-gray-300 text-sm font-rockwell">
+          <p className="footer-text">
             📍 3rd Floor, STC 60 Feet Road, Meena Plaza, Perumalpuram,
             Tirunelveli, Tamil Nadu, India.
           </p>
-          <p className="text-gray-300 text-sm mt-2 font-rockwell">
+          <p className="footer-text mt-2">
             📞 Primary: +91 93450 00685
           </p>
-          <p className="text-gray-300 text-sm mt-1 font-rockwell">
+          <p className="footer-text mt-1">
             📞 Secondary: +91 70100 78309
           </p>
-          <p className="text-gray-400 text-xs mt-2 font-rockwell">
+          <p className="footer-quote mt-2">
             Hours: Monday - Saturday
             <br />
             Morning: 6:00 AM - 8:00 AM
@@ -54,14 +54,14 @@ export default function Footer() {
 
         {/* Column 3: Quick Links & Socials */}
         <div>
-          <h3 className="text-xl font-bold font-rockwell mb-4 text-orange-500">
+          <h3 className="footer-title">
             Quick Links
           </h3>
           <ul className="space-y-2">
             <li>
               <Link
                 to="/"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
+                className="footer-link"
               >
                 Home
               </Link>
@@ -69,7 +69,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/programs"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
+                className="footer-link"
               >
                 Our Programs
               </Link>
@@ -77,7 +77,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/staff"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
+                className="footer-link"
               >
                 Meet Our Staff
               </Link>
@@ -85,7 +85,7 @@ export default function Footer() {
             <li>
               <Link
                 to="/testimonials"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
+                className="footer-link"
               >
                 Testimonials
               </Link>
@@ -93,14 +93,14 @@ export default function Footer() {
             <li>
               <Link
                 to="/join-now"
-                className="text-gray-300 hover:text-orange-500 transition-colors duration-300 text-sm font-rockwell"
+                className="footer-link"
               >
                 Join Now
               </Link>
             </li>
           </ul>
 
-          <h3 className="text-xl font-bold font-rockwell mt-6 mb-4 text-orange-500">
+          <h3 className="footer-title mt-6">
             Connect With Us
           </h3>
           <div className="flex space-x-4">
@@ -127,7 +127,7 @@ export default function Footer() {
       </div>
 
       <div className="mt-8 pt-4 border-t border-gray-800 text-center">
-        <p className="text-gray-400 text-sm font-rockwell">
+        <p className="footer-copyright">
           © {new Date().getFullYear()} True North Academy. All rights reserved.
         </p>
       </div>

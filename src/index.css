@@ -1,1 +1,333 @@
 @import "tailwindcss";
+
+/* Global Font Family for Entire Project */
+* {
+  font-family: Rockwell, serif;
+}
+
+body {
+  font-family: Rockwell, serif;
+}
+
+/* Header and Title CSS Classes */
+
+/* Main Page Header */
+.page-header {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 700;
+  font-family: Rockwell, serif;
+  line-height: 1.25;
+  letter-spacing: 0.025em;
+  color: #000000;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (min-width: 640px) {
+  .page-header {
+    font-size: 3.75rem;
+    line-height: 1;
+    font-family: Rockwell, serif;
+  }
+}
+
+@media (min-width: 1024px) {
+  .page-header {
+    font-size: 4.5rem;
+    line-height: 1;
+    font-family: Rockwell, serif;
+  }
+}
+
+/* Section Headers */
+.section-header {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  letter-spacing: -0.025em;
+  text-align: center;
+  color: #000000;
+  margin-bottom: 1rem;
+}
+
+@media (min-width: 640px) {
+  .section-header {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+/* Subsection Headers */
+.subsection-header {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.025em;
+  color: #1f2937;
+}
+
+@media (min-width: 640px) {
+  .subsection-header {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+    font-family: Rockwell, serif;
+  }
+}
+
+/* Card Titles */
+.card-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #dc2626;
+  font-family: Rockwell, serif;
+}
+
+/* Staff Member Names */
+.staff-name {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.25rem;
+  color: #111827;
+}
+
+/* Staff Titles */
+.staff-title {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #b91c1c;
+}
+
+/* Contact Section Header */
+.contact-header {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+  font-weight: 700;
+  font-family: Rockwell, serif;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.75rem;
+  color: #ffffff;
+}
+
+@media (min-width: 640px) {
+  .contact-header {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+/* Form Labels */
+.form-label {
+  display: block;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-family: Rockwell, serif;
+  line-height: 1.25;
+  margin-bottom: 0.25rem;
+  color: #000000;
+}
+
+/* Hero Title */
+.hero-title {
+  color: #000000;
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  border-bottom-width: 4px;
+  font-weight: 700;
+  font-family: Rockwell, serif;
+  line-height: 1.25;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  border-bottom-color: #000000;
+  border-bottom-width: 4px;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 3.75rem;
+    line-height: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 4.5rem;
+    line-height: 1;
+  }
+}
+
+/* Program Card Title */
+.program-card-title {
+  font-size: 1.25rem;
+  font-family: Rockwell, serif;
+  line-height: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #dc2626;
+}
+
+/* Dark Theme Headers */
+.dark-section-header {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+  text-align: center;
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  margin-bottom: 1.5rem;
+  color: #ffffff;
+  font-family: Rockwell, serif;
+}
+
+@media (min-width: 640px) {
+  .dark-section-header {
+    font-size: 3rem;
+    line-height: 1;
+    font-family: Rockwell, serif;
+  }
+}
+
+/* Responsive Text Classes */
+.responsive-title {
+  font-size: 1.5rem;
+  line-height: 2rem;
+  font-weight: 700;
+  font-family: Rockwell, serif;
+}
+
+@media (min-width: 640px) {
+  .responsive-title {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-title {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .responsive-title {
+    font-size: 3rem;
+    line-height: 1;
+  }
+}
+
+.responsive-subtitle {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+  font-weight: 600;
+}
+
+@media (min-width: 640px) {
+  .responsive-subtitle {
+    font-size: 1.25rem;
+    line-height: 1.75rem; 
+    font-family: Rockwell, serif;
+  }
+}
+
+@media (min-width: 768px) {
+  .responsive-subtitle {
+    font-size: 1.5rem;
+    line-height: 2rem;
+    font-family: Rockwell, serif;
+  }
+}
+
+/* Text with Hover Effects */
+.hover-title {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  font-family: Rockwell, serif;
+}
+
+.hover-title:hover {
+  transform: scale(1.05);
+  color: #dc2626;
+  font-family: Rockwell, serif;
+}
+
+/* Gradient Text Effect */
+.gradient-text {
+  background: linear-gradient(135deg, #dc2626 0%, #b91c1c 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-family: Rockwell, serif;
+}
+
+/* Animated Text */
+.animated-text {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 500ms;
+  font-family: Rockwell, serif;
+}
+
+.animated-text:hover {
+  transform: translateY(-2px);
+  text-shadow: 0 4px 8px rgba(220, 38, 38, 0.3);
+  font-family: Rockwell, serif;
+}
+
+/* Footer Specific Classes */
+.footer-title {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #f97316; /* orange-500 */
+  font-family: Rockwell, serif;
+}
+
+.footer-text {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #d1d5db; /* gray-300 */
+  font-family: Rockwell, serif;
+}
+
+.footer-link {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #d1d5db; /* gray-300 */
+  transition-property: color;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+  font-family: Rockwell, serif;
+}
+
+.footer-link:hover {
+  color: #f97316; /* orange-500 */
+}
+
+.footer-copyright {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #9ca3af; /* gray-400 */
+  font-family: Rockwell, serif;
+}
+
+.footer-description {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  color: #d1d5db; /* gray-300 */
+  line-height: 1.625;
+  font-family: Rockwell, serif;
+}
+
+.footer-quote {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  color: #9ca3af; /* gray-400 */
+  font-family: Rockwell, serif;
+}

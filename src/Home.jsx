@@ -120,7 +120,7 @@ const Home = () => {
           animate={{ opacity: 1, x: 0, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.5, ease: "easeOut" }}
         >
-          <h1 className="text-black text-4xl sm:text-6xl lg:text-7xl border-b-4 font-bold font-rockwell leading-tight drop-shadow-lg">
+          <h1 className="hero-title drop-shadow-lg">
             TRUE NORTH
             <br />
             ACADEMY
@@ -149,7 +149,7 @@ const Home = () => {
         <div className="max-w-7xl mx-auto px-6">
           {/* Heading */}
           <motion.h2
-            className="text-center text-4xl sm:text-5xl font-extrabold mb-4 tracking-tight text-black"
+            className="section-header"
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
@@ -280,9 +280,9 @@ const Home = () => {
                 />
                 <div className="p-6 flex flex-col justify-between flex-1">
                   <div>
-                    <h3 className="text-xl font-bold text-red-600 mb-2">
-                      {cls.name}
-                    </h3>
+                                      <h3 className="program-card-title">
+                    {cls.name}
+                  </h3>
                     <p className="text-sm text-gray-700 mb-3">
                       {cls.description}
                     </p>
@@ -308,7 +308,7 @@ const Home = () => {
             initial={{ opacity: 0, y: -40 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="text-4xl sm:text-5xl text-center font-bold tracking-tight mb-6 text-white"
+            className="dark-section-header"
           >
             Meet Our Passionate Instructors
           </motion.h2>
@@ -368,8 +368,8 @@ const Home = () => {
                   loading="lazy"
                 />
                 <div className="p-5">
-                  <h3 className="text-xl font-bold mb-1">{staff.name}</h3>
-                  <p className="text-red-700 text-sm font-semibold mb-2">
+                  <h3 className="staff-name">{staff.name}</h3>
+                  <p className="staff-title">
                     {staff.title}
                   </p>
                   <p className="text-sm text-gray-700">
@@ -400,7 +400,7 @@ const Home = () => {
       <div id="contact-section" className="w-full">
         <section className="w-full py-10 bg-red-600 overflow-hidden text-center shadow-inner">
           <motion.h2
-            className="text-white text-3xl sm:text-4xl font-bold font-rockwell tracking-wider mb-3"
+            className="contact-header"
             variants={sectionVariants}
             initial="hidden"
             whileInView="visible"
@@ -437,7 +437,7 @@ const Home = () => {
             >
               <label
                 htmlFor="user_first_name"
-                className="block text-black text-base font-rockwell leading-tight mb-1"
+                className="form-label"
               >
                 Name
               </label>
@@ -459,7 +459,7 @@ const Home = () => {
             >
               <label
                 htmlFor="user_email"
-                className="block text-black text-base font-rockwell leading-tight mb-1"
+                className="form-label"
               >
                 Email<span className="text-red-600">*</span>
               </label>
@@ -482,7 +482,7 @@ const Home = () => {
             >
               <label
                 htmlFor="user_phone"
-                className="block text-black text-base font-rockwell leading-tight mb-1"
+                className="form-label"
               >
                 Phone No.
               </label>
@@ -504,7 +504,7 @@ const Home = () => {
             >
               <label
                 htmlFor="user_programs"
-                className="block text-black text-base font-rockwell leading-tight mb-1"
+                className="form-label"
               >
                 Programs of Interest
               </label>
