@@ -64,7 +64,7 @@ export default function Header() {
             href="https://wa.me/919345000685"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white flex flex-row text-green-500"
+            className=" hover:text-white flex flex-row text-green-500"
             whileHover={{ scale: 1.15 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
