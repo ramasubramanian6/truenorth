@@ -64,11 +64,11 @@ export default function Header() {
             href="https://wa.me/919345000685"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white hover:text-green-500"
+            className="text-white flex flex-row text-green-500"
             whileHover={{ scale: 1.15 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <FaWhatsapp className="w-7 h-7 sm:w-8 sm:h-8" />
+            <FaWhatsapp className="w-9 h-9 " /><span className=" font-extralight text-2xl ">+91 9345000685</span>
           </motion.a>
         </div>
       </motion.header>
@@ -102,7 +102,7 @@ export default function Header() {
             whileHover={{ scale: 1.15 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <FaInstagramSquare className="w-8 h-8" />
+            <FaInstagramSquare className="w-12 h-12" />
           </motion.a>
           <motion.a
             href="https://wa.me/919345000685"
@@ -112,7 +112,7 @@ export default function Header() {
             whileHover={{ scale: 1.15 }}
             transition={{ type: "spring", stiffness: 400, damping: 10 }}
           >
-            <FaWhatsapp className="w-8 h-8" />
+            <FaWhatsapp className="w-12 h-12" />
           </motion.a>
         </div>
       </motion.nav>
